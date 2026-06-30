@@ -75,7 +75,100 @@
             aspect-ratio: 366 / 110; /* 画像の元の比率を維持 */
             border-radius: 0; /* 角を直角に固定 */
             overflow: hidden;
-            /* 【変更】background-color: #ffffff; (白背景) を削除しました */
+            background-color: #ffffff; /* 画像の背景を白に */
             box-shadow: 0 2px 8px rgba(58, 50, 49, 0.05);
             transition: opacity 0.3s ease, transform 0.3s ease;
-            border: 1px solid rgba(0,0,0
+            border: 1px solid rgba(0,0,0,0.05); /* 軽い外枠をつけて見やすく */
+        }
+
+        .banner-item:hover, .footer-banner:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(58, 50, 49, 0.1);
+        }
+
+        .banner-item img, .footer-banner img {
+            width: 100%;
+            height: 100%;
+            /* 【ここを変更】coverからcontainにすることで、画像を切らずに全体を必ず表示させます */
+            object-fit: contain; 
+            display: block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .banner-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <main>
+            
+            <div class="section-title">
+                <span class="material-symbols-outlined">auto_awesome</span>
+                <h2>お役立ち情報</h2>
+            </div>
+
+            <div class="banner-grid">
+                <a href="heya.html" class="banner-item">
+                    <img src="images/lineline.png" alt="来店予約：スムーズなお部屋探し">
+                </a>
+
+                <a href="https://lin.ee/Qsj3s42" class="footer-banner" target="_blank" rel="noopener">
+                    <img src="images/nagarer.png" alt="LINEでのお問い合わせはこちら">
+                </a>
+
+                <a href="blog.html" class="banner-item">
+                    <img src="images/shitu.png" alt="スタッフブログ：定期的に更新中！">
+                </a>
+
+                <a href="gourmet.html" class="banner-item">
+                    <img src="images/yougo.png" alt="グルメ：周辺飲食店情報">
+                </a>
+
+                <a href="heya.html" class="banner-item">
+                    <img src="images/banner_flow.png" alt="お部屋探しから契約までの流れ">
+                </a>
+
+                <a href="shitsumon.html" class="banner-item">
+                    <img src="images/banner_faq.png" alt="よくある質問">
+                </a>
+
+                <a href="jiki.html" class="banner-item">
+                    <img src="images/banner_jiki.png" alt="お部屋探しに良い時期とポイント・コツ">
+                </a>
+
+                <a href="shoki.html" class="banner-item">
+                    <img src="images/banner_shoki.png" alt="賃貸契約費用や一人暮らしの初期費用">
+                </a>
+
+                <a href="checklist.html" class="banner-item">
+                    <img src="images/banner_checklist.png" alt="賃貸物件の選び方とチェック方法">
+                </a>
+
+                <a href="madori.html" class="banner-item">
+                    <img src="images/banner_madori.png" alt="間取り図・資料の見方">
+                </a>
+            </div>
+
+        </main>
+
+        <footer>
+            
+        </footer>
+    </div>
+
+</body>
+</html>
