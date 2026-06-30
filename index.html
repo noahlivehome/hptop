@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お役立ち情報</title>
+    <title>お役立ち情報 - バナーグリッド</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Playfair+Display:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <style>
+        /* Base styles with a clean white and beige color palette */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
         :root {
             --bg-color: #ffffff;
-            --card-beige: #c5c1b2;
-            --main-gold: #c5c1b2;
-            --icon-accent: #c5c1b2;
+            --main-gold: #c5c1b2; /* Subtle beige/gold for accents */
             --text-dark: #3A3231;
             --text-muted: #615553;
-            --white: #ffffff;
         }
 
         body {
@@ -33,13 +31,14 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Container for content, centered with a comfortable max width */
         .container {
-            max-width: 900px;
-            margin: 0 auto 60px auto;
+            max-width: 900px; /* Limits the width for better readability */
+            margin: 0 auto 60px auto; /* Centers the container */
             padding: 0 20px;
         }
 
-        /* SECTION TITLE */
+        /* Styling for the section titles with icons */
         .section-title {
             display: flex;
             align-items: center;
@@ -61,47 +60,89 @@
         }
 
         /* -------------------------------------------
-            IMAGE BANNER GRID SYSTEM (お役立ち情報バナー)
+           Image Banner Grid System
         ------------------------------------------- */
+        /* Display items in a grid with 3 columns */
         .banner-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 20px; /* Space between grid items */
             margin-bottom: 50px;
         }
 
+        /* Styling for each banner link item */
         .banner-item, .footer-banner {
             display: block;
-            aspect-ratio: 366 / 110;
-            border-radius: 0; /* 角は直角のまま */
+            aspect-ratio: 366 / 110; /* Fixed aspect ratio to prevent image distortion */
+            border-radius: 8px; /* Slightly rounded corners */
             overflow: hidden;
-            background-color: #ffffff;
-            /* 影（box-shadow）と外枠（border）を削除し、完全に背景と一体化させました */
-            box-shadow: none; 
-            border: none; 
-            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 12px rgba(58, 50, 49, 0.06); /* Subtle shadow */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Transition for hover effects */
+            border: 1px solid rgba(0,0,0,0.03); /* Faint border */
         }
 
+        /* Hover effects for the links */
         .banner-item:hover, .footer-banner:hover {
-            opacity: 0.75; /* ホバーした時だけ少し薄くなります */
+            opacity: 0.9;
+            transform: translateY(-3px); /* Subtle lift on hover */
+            box-shadow: 0 6px 18px rgba(58, 50, 49, 0.12); /* Increased shadow on hover */
         }
 
+        /* Styling for the images inside the links */
         .banner-item img, .footer-banner img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 画像を切らずに全体を表示 */
+            object-fit: cover; /* Ensures image covers the area without distorting */
             display: block;
         }
 
-        /* RESPONSIVE */
+        /* -------------------------------------------
+           Footer Styles
+        ------------------------------------------- */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-bottom: 40px;
+            border-top: 1px solid #E8E2D7; /* Divider line above footer */
+            padding-top: 30px;
+        }
+
+        /* Styling for the LINE contact button */
+        .footer-link {
+            display: inline-block;
+            background-color: #06C755; /* LINE Green color */
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(6, 199, 85, 0.2);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* -------------------------------------------
+           Responsive Styles (Mobile & Tablet)
+        ------------------------------------------- */
         @media (max-width: 768px) {
+            /* On smaller screens, use 2 columns instead of 3 */
             .banner-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 12px;
+            }
+            /* Reduce aspect ratio slightly for better fit on small screens */
+            .banner-item, .footer-banner {
+                aspect-ratio: 300 / 110;
             }
         }
 
         @media (max-width: 480px) {
+            /* On very small screens (phones), use 1 column */
             .banner-grid {
                 grid-template-columns: 1fr;
             }
@@ -136,7 +177,7 @@
                     <img src="images/yougobana.png" alt="グルメ：周辺飲食店情報">
                 </a>
 
-                <a href="heya.html" class="banner-item">
+                <a href="flow.html" class="banner-item">
                     <img src="images/banner_flow.png" alt="お部屋探しから契約までの流れ">
                 </a>
 
@@ -149,11 +190,11 @@
                 </a>
 
                 <a href="shoki.html" class="banner-item">
-                    <img src="images/banner_shoki.png" alt="賃貸契約費用や一人暮らしの初期費用">
+                    <img src="images/banner_shoki.png" alt="賃賃借契約費用や初期費用">
                 </a>
 
                 <a href="checklist.html" class="banner-item">
-                    <img src="images/banner_checklist.png" alt="賃貸物件の選び方とチェック方法">
+                    <img src="images/banner_checklist.png" alt="失敗しない部屋選び 選び方とチェック方法">
                 </a>
 
                 <a href="madori.html" class="banner-item">
@@ -164,7 +205,9 @@
         </main>
 
         <footer>
-            
+            <a href="https://lin.ee/Qsj3s42" class="footer-link" target="_blank" rel="noopener">
+                LINEで質問・お問い合わせをする
+            </a>
         </footer>
     </div>
 
