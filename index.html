@@ -35,7 +35,7 @@
 
         .container {
             max-width: 900px;
-            margin: 0 auto 60px auto; /* 上部の不要なマージンを削り、スッキリさせました */
+            margin: 0 auto 60px auto;
             padding: 0 20px;
         }
 
@@ -45,7 +45,6 @@
             align-items: center;
             gap: 12px;
             margin: 40px 0 25px 0;
-            /* 一番上の不要な境界線（border-bottom）を削除しました */
             padding-bottom: 10px;
         }
 
@@ -74,7 +73,7 @@
         .banner-item, .footer-banner {
             display: block;
             aspect-ratio: 366 / 110; /* 画像の比率を維持 */
-            border-radius: 8px;
+            border-radius: 0; /* 【変更】角を直角にしました */
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(58, 50, 49, 0.06);
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -160,8 +159,6 @@
                 <a href="madori.html" class="banner-item">
                     <img src="images/banner_madori.png" alt="間取り図・資料の見方">
                 </a>
-
-
             </div>
 
         </main>
