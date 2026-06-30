@@ -66,32 +66,30 @@
         .banner-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px; /* 少し隙間を狭くしてコンパクトに */
+            gap: 15px;
             margin-bottom: 50px;
         }
 
         .banner-item, .footer-banner {
             display: block;
-            aspect-ratio: 366 / 110; /* 画像の元の比率を維持 */
-            border-radius: 0; /* 角を直角に固定 */
+            aspect-ratio: 366 / 110;
+            border-radius: 0; /* 角は直角のまま */
             overflow: hidden;
-            background-color: #ffffff; /* 画像の背景を白に */
-            box-shadow: 0 2px 8px rgba(58, 50, 49, 0.05);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05); /* 軽い外枠をつけて見やすく */
+            background-color: #ffffff;
+            /* 影（box-shadow）と外枠（border）を削除し、完全に背景と一体化させました */
+            box-shadow: none; 
+            border: none; 
+            transition: opacity 0.3s ease;
         }
 
         .banner-item:hover, .footer-banner:hover {
-            opacity: 0.85;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(58, 50, 49, 0.1);
+            opacity: 0.75; /* ホバーした時だけ少し薄くなります */
         }
 
         .banner-item img, .footer-banner img {
             width: 100%;
             height: 100%;
-            /* 【ここを変更】coverからcontainにすることで、画像を切らずに全体を必ず表示させます */
-            object-fit: contain; 
+            object-fit: contain; /* 画像を切らずに全体を表示 */
             display: block;
         }
 
@@ -123,19 +121,19 @@
 
             <div class="banner-grid">
                 <a href="heya.html" class="banner-item">
-                    <img src="images/lineline.png" alt="来店予約：スムーズなお部屋探し">
+                    <img src="images/linebana.png" alt="来店予約：スムーズなお部屋探し">
                 </a>
 
                 <a href="https://lin.ee/Qsj3s42" class="footer-banner" target="_blank" rel="noopener">
-                    <img src="images/nagarer.png" alt="LINEでのお問い合わせはこちら">
+                    <img src="images/keiyakumadebana.png" alt="LINEでのお問い合わせはこちら">
                 </a>
 
                 <a href="blog.html" class="banner-item">
-                    <img src="images/shitu.png" alt="スタッフブログ：定期的に更新中！">
+                    <img src="images/shitsumonbana.png" alt="スタッフブログ：定期的に更新中！">
                 </a>
 
                 <a href="gourmet.html" class="banner-item">
-                    <img src="images/yougo.png" alt="グルメ：周辺飲食店情報">
+                    <img src="images/yougobana.png" alt="グルメ：周辺飲食店情報">
                 </a>
 
                 <a href="heya.html" class="banner-item">
