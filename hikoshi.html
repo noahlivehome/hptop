@@ -184,29 +184,13 @@
             border-radius: 20px;
             margin-right: 15px;
             letter-spacing: 0.05em;
+            flex-shrink: 0;
         }
 
         .period-header h2 {
             font-family: 'Noto Serif JP', serif;
             font-size: 20pt;
             color: #332d27;
-        }
-
-        /* 見出し下イメージ用のコンテナ */
-        .period-banner-image {
-            width: 100%;
-            margin-bottom: 35px;
-            text-align: center;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .period-banner-image img {
-            width: 100%;
-            height: auto;
-            max-height: 320px;
-            object-fit: cover;
-            display: block;
         }
 
         /* 3列タイルレイアウト */
@@ -217,13 +201,13 @@
             margin-bottom: 40px;
         }
 
-        /* 縦1列並び用のスタイル（中央に寄せて読みやすくする設定） */
+        /* 縦1列並び用のスタイル */
         .tile-list-vertical {
             display: flex;
             flex-direction: column;
             gap: 24px;
             margin: 0 auto 40px auto;
-            max-width: 850px; /* 左に寄りすぎないよう幅を制限 */
+            max-width: 850px;
         }
 
         .tile {
@@ -259,27 +243,12 @@
             font-size: 14pt;
             font-weight: 700;
             color: #332d27;
-            border-bottom: none;
-            padding-bottom: 0;
         }
 
         .tile p {
             font-size: 10.5pt;
             color: #5c5246;
             line-height: 1.8;
-        }
-
-        /* アイコン付きリストのスタイリング（カード内用） */
-        .icon-list-block {
-            margin-top: 15px;
-        }
-
-        .icon-list-block p {
-            margin-bottom: 15px;
-        }
-
-        .icon-list-block p:last-child {
-            margin-bottom: 0;
         }
 
         /* 当日2分割エリア */
@@ -341,9 +310,17 @@
             color: #332d27;
         }
 
+        /* テーブルがスマホではみ出さないためのコンテナ */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .table-wrapper {
             width: 100%;
             border-collapse: collapse;
+            min-width: 500px; /* スマホで潰れすぎないよう最小幅を設定 */
         }
 
         .table-wrapper th, .table-wrapper td {
@@ -377,12 +354,16 @@
             font-family: 'Noto Serif JP', serif;
             font-size: 26pt;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
 
-        .closing-banner p {
-            font-size: 12pt;
-            color: #5c5246;
+        /* フッター画像を枠に綺麗に合わせる設定 */
+        .closing-banner img {
+            width: 100%;
+            max-width: 500px; /* 大きくなりすぎない上限 */
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
             margin-bottom: 40px;
         }
 
@@ -392,27 +373,101 @@
             letter-spacing: 0.05em;
         }
 
-        /* レスポンシブ対応 */
+        /* レスポンシブ対応 (スマートフォン・タブレット自動最適化) */
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 26pt; }
-            
-            .timeline-flow { flex-direction: column; gap: 30px; }
-            .timeline-flow::before { display: none; }
+            .hero-section {
+                padding: 60px 20px 40px 20px;
+            }
+
+            .hero-section h1 { 
+                font-size: 22pt; 
+            }
+
+            .hero-section .lead-text {
+                font-size: 12pt;
+            }
+
+            .container {
+                padding: 20px 15px 60px 15px;
+            }
+
+            .period-section {
+                margin-bottom: 50px;
+            }
+
+            .period-header h2 {
+                font-size: 16pt;
+            }
+
+            .timeline-section {
+                padding: 20px;
+                margin-bottom: 50px;
+            }
+
+            .timeline-flow { 
+                flex-direction: column; 
+                gap: 24px; 
+            }
+
+            .timeline-flow::before { 
+                display: none; 
+            }
             
             .timeline-step { 
                 width: 100%; 
                 display: flex; 
-                flex-direction: column-reverse; 
+                flex-direction: row; 
                 align-items: center; 
-                text-align: center; 
+                text-align: left; 
+                gap: 15px;
             }
             
-            .step-dot { margin: 12px auto 0 auto; width: 36px; height: 36px; }
-            
-            .tile-grid { grid-template-columns: 1fr; }
-            .tile-list-vertical { max-width: 100%; }
-            .day-split { grid-template-columns: 1fr; }
-            .table-wrapper th, .table-wrapper td { padding: 12px; font-size: 10pt; }
+            .step-dot { 
+                margin: 0; 
+                width: 36px; 
+                height: 36px; 
+                flex-shrink: 0;
+            }
+
+            .tile-grid { 
+                grid-template-columns: 1fr; 
+                gap: 16px;
+            }
+
+            .tile {
+                padding: 20px;
+            }
+
+            .tile-list-vertical { 
+                max-width: 100%; 
+                gap: 16px;
+            }
+
+            .day-split { 
+                grid-template-columns: 1fr; 
+                gap: 16px;
+            }
+
+            .split-card {
+                padding: 20px;
+            }
+
+            .table-section {
+                padding: 20px;
+            }
+
+            .table-wrapper th, .table-wrapper td { 
+                padding: 12px; 
+                font-size: 10pt; 
+            }
+
+            .closing-banner {
+                padding: 50px 20px;
+            }
+
+            .closing-banner h2 {
+                font-size: 20pt;
+            }
         }
     </style>
 </head>
@@ -671,46 +726,49 @@
 
         <section class="period-section table-section">
             <h3>主要な手続きと必要書類一覧</h3>
-            <table class="table-wrapper">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">提出先</th>
-                        <th style="width: 35%;">手続き内容</th>
-                        <th style="width: 40%;">必要書類・持ち物</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>旧住所の役所</strong></td>
-                        <td>転出届の提出</td>
-                        <td>本人確認書類、印鑑</td>
-                    </tr>
-                    <tr>
-                        <td><strong>新住所の役所</strong></td>
-                        <td>転入届・マイナンバー</td>
-                        <td>転出証明書、本人確認書類</td>
-                    </tr>
-                    <tr>
-                        <td><strong>警察署</strong></td>
-                        <td>免許証の住所変更</td>
-                        <td>運転免許証、新住民票</td>
-                    </tr>
-                    <tr>
-                        <td><strong>金融機関</strong></td>
-                        <td>住所変更届</td>
-                        <td>届出印、新住所の確認書類</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table class="table-wrapper">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">提出先</th>
+                            <th style="width: 35%;">手続き内容</th>
+                            <th style="width: 40%;">必要書類・持ち物</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>旧住所の役所</strong></td>
+                            <td>転出届の提出</td>
+                            <td>本人確認書類、印鑑</td>
+                        </tr>
+                        <tr>
+                            <td><strong>新住所の役所</strong></td>
+                            <td>転入届・マイナンバー</td>
+                            <td>転出証明書、本人確認書類</td>
+                        </tr>
+                        <tr>
+                            <td><strong>警察署</strong></td>
+                            <td>免許証の住所変更</td>
+                            <td>運転免許証、新住民票</td>
+                        </tr>
+                        <tr>
+                            <td><strong>金融機関</strong></td>
+                            <td>住所変更届</td>
+                            <td>届出印、新住所の確認書類</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
     </main>
 
     <footer class="closing-banner">
         <h2>素晴らしい新生活を</h2>
-        <img src="images/subara.png" alt="手続きイメージ" style="width: 100%; height: auto; border-radius: 12px;">
+        <img src="images/subara.png" alt="手続きイメージ">
         <div class="footer-info">
-            <i class="fa-solid fa-globe" style="margin-right: 5px;"></i> Ⓒnoahlivehome.jp 
+            Ⓒnoahlivehome.jp 
+        </div>
     </footer>
 </body>
 </html>
