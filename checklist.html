@@ -1,0 +1,279 @@
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>賃貸内見チェックリスト</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <style>
+        /* 背景白 ＆ ベージュ系の洗練されたカラーパレット */
+        :root {
+            --bg-color: #ffffff;      /* 全体の背景（クリーンホワイト） */
+            --card-bg: #faf7f2;       /* カード背景（ごく淡いミルキーベージュ） */
+            --primary-color: #7c6651;  /* メイン文字・アクセント（ココアブラウン） */
+            --accent-color: #e6dfd3;   /* 見出し背景（ソフトベージュ） */
+            --border-color: #ebd9c8;   /* 境界線（マイルドベージュ） */
+            --text-color: #3d352e;     /* 本文（ビターブラウン） */
+            --check-checked: #c5b6a7;  /* チェック済みの薄いカラー */
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+            touch-action: manipulation;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ヘッダー（背景を白にして、下線で柔らかく区切るスタイル） */
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            background-color: var(--bg-color);
+            padding: 20px 10px;
+            border-bottom: 2px dashed var(--accent-color);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .header-title h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: #706356;
+        }
+
+        /* セクション（カードスタイル：枠線を細くスマートに） */
+        .section {
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            border: 1px solid var(--accent-color);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(124, 102, 81, 0.04);
+        }
+
+        h2 {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            font-size: 1.05rem;
+            margin: 0;
+            padding: 14px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* アイコンの共通スタイル設定 */
+        .material-symbols-outlined {
+            font-size: 22px;
+            font-variant-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        /* 持ち物リスト内のミニアイコン用 */
+        .belonging-item .material-symbols-outlined {
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+
+        /* 箇条書き・リスト */
+        .item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .item {
+            border-bottom: 1px solid #f5efe6;
+            transition: background-color 0.2s;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item:hover {
+            background-color: var(--card-bg);
+        }
+
+        .item-label {
+            display: flex;
+            align-items: flex-start;
+            padding: 14px 15px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* チェックボックスのカスタム */
+        .item-label input[type="checkbox"] {
+            margin-top: 2px;
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        /* チェック時のテキスト装飾（文字を薄く） */
+        .item-label input[type="checkbox"]:checked + .item-text {
+            text-decoration: line-through;
+            color: var(--check-checked);
+            opacity: 0.7;
+        }
+
+        /* チェックが入った行の背景をわずかにベージュに */
+        .item:has(input[type="checkbox"]:checked) {
+            background-color: #faf9f6;
+        }
+
+        .item-text {
+            font-size: 0.9rem;
+            flex: 1;
+            user-select: none;
+        }
+
+        /* 持ち物リスト用のスタイル（白背景に映えるデザイン） */
+        .belongings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background-color: #ffffff;
+        }
+
+        .belonging-item {
+            background-color: var(--card-bg);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+        }
+
+        @media (max-width: 400px) {
+            .belongings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+
+
+<div class="container">
+
+    <header>
+        <div class="header-title">
+            <span class="material-symbols-outlined" style="font-size: 28px;">real_estate_agent</span>
+            <h1>賃貸内見チェックリスト</h1>
+        </div>
+        <p>失敗しないお部屋探しのために。現地でタップしてチェックを入れて使えます。</p>
+    </header>
+
+    <div class="section">
+        <h2><span class="material-symbols-outlined">work</span>必須の持ち物</h2>
+        <div class="belongings-grid">
+            <div class="belonging-item"><span class="material-symbols-outlined">smartphone</span>スマホ（カメラ等）</div>
+            <div class="belonging-item"><span class="material-symbols-outlined">square_foot</span>メジャー（3m〜5m）</div>
+            <div class="belonging-item"><span class="material-symbols-outlined">edit_note</span>筆記用具・メモ帳</div>
+            <div class="belonging-item"><span class="material-symbols-outlined">steps</span>脱ぎ履きしやすい靴</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="material-symbols-outlined">sensor_door</span>玄関・廊下・収納</h2>
+        <ul class="item-list">
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">玄関ドアの開閉、鍵の施錠はスムーズか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">靴箱の容量は十分か、棚の高さは変えられるか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">通路・玄関の幅を測定（大型家電が搬入できるか）</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">クローゼットの奥行き、ハンガーパイプの有無</span></label></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 id="room"><span class="material-symbols-outlined">chair</span>居室（リビング・寝室）</h2>
+        <ul class="item-list">
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">コンセントの位置と数は十分か（ベッド周りなど）</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">テレビ・ネット端子の場所を確認</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">スマホの電波が部屋の奥まで入るか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">窓の幅・高さ、床からの高さを測定（カーテン用）</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">壁を軽く叩いて、遮音性を確認（軽い音がしないか）</span></label></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="material-symbols-outlined">cooking</span>キッチン</h2>
+        <ul class="item-list">
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">シンクの広さ、蛇口の水圧・お湯が出るか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">ガスの種類（都市ガス／プロパン）とコンロの口数</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">冷蔵庫・レンジ置き場の幅と奥行きを測定</span></label></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="material-symbols-outlined">bathtub</span>水回り（お風呂・トイレ・洗面所）</h2>
+        <ul class="item-list">
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">洗濯機置き場（防水パン）のサイズと蛇口の高さ</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">お風呂の広さ、追い焚き・浴室乾燥機の有無</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">排水口から異臭がしないか、水はけは良いか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">トイレの温水洗浄便座と電源コンセントの有無</span></label></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="material-symbols-outlined">apartment</span>共用部・周辺環境</h2>
+        <ul class="item-list">
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">廊下や階段にゴミや私物が放置されていないか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">ゴミ置き場の管理状態（清掃やカラス対策）</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">駅から物件までの坂道、夜間の街灯の有無</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">駐輪場・駐車場の有無（サイズや広さ）</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">近くにスーパーやコンビニがあるか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">学区や学校までの距離はどのくらいか</span></label></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="material-symbols-outlined">forum</span>不動産会社への確認事項</h2>
+        <ul class="item-list">
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">エアコンや照明は「残置物」ではないか</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">上下左右にどんな人が住んでいるか（騒音履歴）</span></label></li>
+            <li class="item"><label class="item-label"><input type="checkbox"><span class="item-text">退去時の敷金償却ルールや更新料の有無</span></label></li>
+        </ul>
+    </div>
+
+</div>
+
+
+        <footer>
+            <div class="footer-info">
+                &copy; noahlivehome.jp 
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
