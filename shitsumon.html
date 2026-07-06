@@ -77,14 +77,14 @@
             font-weight: 600;
         }
 
-        header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin: 0;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-            color: var(--text-dark);
+        /* HEADER & MAIN VISUAL INTEGRATION */
+        header {
+            overflow: hidden;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            background-color: #ffffff;   /* ← var(--card-beige) から #ffffff (白) に変更 */
+            border: none;                /* ← 枠線を消す、または必要に応じて残す */
+            text-align: center;
         }
 
         header h1::after {
