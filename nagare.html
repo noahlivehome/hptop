@@ -1,6 +1,6 @@
-
-
-
+<!DOCTYPE html>
+<html lang="ja">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お部屋探しからご入居までの流れ</title>
@@ -44,10 +44,9 @@
         header {
             overflow: hidden;
             margin-bottom: 40px;
-            border-radius: 12px;
-            background-color: var(--card-beige);
-            border: 1px solid #E8E2D7;
             text-align: center;
+            background-color: #ffffff;
+            border: none;
         }
 
         .header-visual {
@@ -77,14 +76,13 @@
             font-weight: 600;
         }
 
-        /* HEADER & MAIN VISUAL INTEGRATION */
-        header {
-            overflow: hidden;
-            margin-bottom: 40px;
-            border-radius: 12px;
-            background-color: #ffffff;   /* ← var(--card-beige) から #ffffff (白) に変更 */
-            border: none;                /* ← 枠線を消す、または必要に応じて残す */
-            text-align: center;
+        header h1 {
+            position: relative;
+            display: inline-block;
+            margin: 0 0 20px 0;
+            padding-bottom: 15px;
+            font-size: 32px;
+            font-weight: 700;
         }
 
         header h1::after {
@@ -164,7 +162,7 @@
         .flow-body {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* 写真の縦位置がテキスト中央と揃うように調整 */
+            align-items: center;
             gap: 30px;
         }
 
@@ -172,10 +170,10 @@
             flex: 1;
         }
 
-        /* IMAGE BOX (アイコンから写真表示へ変更・最適化) */
+        /* IMAGE BOX */
         .flow-image-box {
             flex-shrink: 0;
-            width: 180px; /* 写真が見やすくなるよう幅を少し広げて調整 */
+            width: 180px;
             text-align: right;
             display: flex;
             align-items: center;
@@ -185,8 +183,8 @@
         .flow-image-box img {
             width: 100%;
             height: auto;
-            border-radius: 8px; /* 角を少し丸めて全体の雰囲気に合わせる */
-            box-shadow: 0 4px 12px rgba(58, 50, 49, 0.05); /* 軽い影をつけて上品に */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(58, 50, 49, 0.05);
             object-fit: cover;
         }
 
@@ -261,31 +259,13 @@
             text-align: center;
             margin-top: 60px;
             padding-bottom: 40px;
+            border-top: 1px solid var(--card-beige);
+            padding-top: 30px;
         }
 
-        /* フッター画像（バナー）のスタイリング（366x100px固定） */
-        .footer-banner {
-            display: inline-block;
-            width: 366px;
-            height: 100px;
-            margin: 0 auto;
-            border-radius: 8px;    /* 画像の角を少し丸めてサイトの雰囲気に合わせる */
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(58, 50, 49, 0.06); /* 軽い影をつけて浮かせる */
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        /* マウスを乗せたときの演出 */
-        .footer-banner:hover {
-            opacity: 0.85;
-            transform: translateY(-2px); /* 少し上に浮き上がる動き */
-        }
-
-        .footer-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* 指定サイズ内に画像を綺麗に収める */
-            display: block;
+        .footer-info {
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
         /* RESPONSIVE */
@@ -319,15 +299,10 @@
             .point-card {
                 padding: 12px;
             }
-            /* スマホなどの狭い画面では画面幅を超えないように縮小対応 */
-            .footer-banner {
-                max-width: 100%;
-                height: auto;
-            }
         }
     </style>
-
-
+</head>
+<body>
 
     <div class="container">
         <div class="header-visual">
@@ -335,11 +310,13 @@
         </div>
         <header>
             <div class="header-content">
-                <span class="en-title"><br>Room Hunting Guide</span>
-                <h1>お部屋探しの流れ</h1><br>
-<a href="https://www.noahlivehome.jp/ensen1c1/" class="link-button" target="_blank" rel="noopener">
-                                物件検索はこちら <span class="material-symbols-outlined">open_in_new</span>
-                            </a>
+                <span class="en-title">Room Hunting Guide</span>
+                <h1>お部屋探しの流れ</h1>
+                <div>
+                    <a href="https://www.noahlivehome.jp/ensen1c1/" class="link-button" target="_blank" rel="noopener">
+                        物件検索はこちら <span class="material-symbols-outlined">open_in_new</span>
+                    </a>
+                </div>
             </div>
         </header>
 
@@ -492,10 +469,9 @@
 
         <footer>
             <div class="footer-info">
-                &copy; noahlivehome.jp 
+                &copy;2026 noahlivehome Co., Ltd.　 
             </div>
         </footer>
-
     </div>
 
 </body>
