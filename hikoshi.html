@@ -4,135 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>引っ越し準備のやることリスト | 完璧な新生活スタートガイド</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 共通設定 */
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        }
+
+        :root {
+            --bg-color: #ffffff;         /* サイト全体の背景を白に */
+            --card-beige: #F9F6F0;       /* 枠内（カード）を心地よいベージュ系に */
+            --point-bg: #F0EAE1;         /* ポイントカードの背景 */
+            --main-gold: #B89371;        /* よりはっきりさせたゴールド */
+            --icon-accent: #A89685;      /* アイコンや図形をくっきり見せる濃い目のココアベージュ */
+            --text-dark: #3A3231;        /* 文字も視認性を高めるため少し濃く */
+            --text-muted: #615553;
+            --white: #ffffff;
         }
 
         body {
-            font-family: 'Lato', "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
-            background-color: #ffffff;
-            color: #332d27;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-dark);
             line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            color: #c0a47a;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        a:hover {
-            color: #a38558;
-            text-decoration: underline;
-        }
-
-        /* ヘッダー全体の囲み */
-        .hero-section {
-            background-color: #ffffff;
-            text-align: center;
-            border-bottom: 1px solid #eae5df;
-            width: 100%;
-            overflow: hidden; /* 横スクロールバーの発生を防ぐ */
-        }
-
-        /* ヘッダー画像エリア（PC時は1920x650の枠で完全に固定） */
-        .hero-image-wrap {
-            width: 100%;
-            max-width: 1920px;
-            height: 650px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative; /* 画像を中央配置するための基準線 */
-        }
-
-        /* 画像自体の設定（PCのときは拡大縮小させない） */
-        .hero-image-wrap img {
-            width: 1920px;   /* サイズを完全に固定 */
-            height: 650px;  /* サイズを完全に固定 */
-            object-fit: cover;
-            display: block;
-            
-            /* 画面幅が1920px未満のモニターでも、常に画像の中央を表示させる設定 */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* ヘッダーのテキストエリア */
-        .hero-text-wrap {
-            padding: 60px 20px;
-        }
-
-        .brand-sub {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 12pt;
-            color: #c0a47a;
-            font-weight: 500;
-            letter-spacing: 0.3em;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero-section h1 {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 36pt;
-            font-weight: 700;
-            line-height: 1.4;
-            color: #332d27;
-            margin-bottom: 20px;
-        }
-
-        .header-line {
-            width: 60px;
-            height: 3px;
-            background-color: #bfa37a;
-            margin: 0 auto 30px auto;
-        }
-
-        .hero-section .lead-text {
-            font-size: 14pt;
-            color: #8c7e6c;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* メインコンテンツ枠 */
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px 100px 20px;
+            max-width: 900px;
+            margin: 40px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER & MAIN VISUAL INTEGRATION (nagare.html共通) */
+        header {
+            overflow: hidden;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            border: none;
+            text-align: center;
+        }
+
+        .header-visual {
+            width: 100%;
+            margin-bottom: 35px;
+        }
+
+        .header-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 2px 10px rgba(58, 50, 49, 0.03);
+            border-radius: 12px;
+        }
+
+        .header-content {
+            padding: 0 20px 45px 20px;
+        }
+
+        header .en-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            color: var(--main-gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        header h1 {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            padding-bottom: 15px;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        header h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background-color: var(--main-gold);
+        }
+
+        header .lead-text {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin: 15px auto 0 auto;
+            max-width: 700px;
         }
 
         /* イントロダクション */
         .intro-block {
             text-align: center;
-            margin-bottom: 60px;
+            margin: 40px 0 60px 0;
+            font-size: 15px;
+            color: var(--text-muted);
         }
 
-        /* タイムライン */
+        /* SECTION TITLE (nagare.html共通) */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 60px 0 30px 0;
+            border-bottom: 2px solid var(--card-beige);
+            padding-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .section-title .material-symbols-outlined {
+            color: var(--main-gold);
+            font-size: 24px;
+        }
+
+        /* TIMELINE STEP SECTION */
         .timeline-section {
-            background: #ffffff;
-            border: 1px solid #eae5df;
-            border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 80px;
-            box-shadow: 0 4px 20px rgba(74, 63, 53, 0.02);
+            background-color: var(--card-beige);
+            border: 1px solid #E8E2D7;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(58, 50, 49, 0.02);
         }
 
         .timeline-section h3 {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 15pt;
+            font-size: 18px;
+            font-weight: 700;
             margin-bottom: 30px;
             text-align: center;
+            color: var(--text-dark);
         }
 
         .timeline-flow {
@@ -144,11 +164,11 @@
         .timeline-flow::before {
             content: '';
             position: absolute;
-            top: 22px;
+            top: 20px;
             left: 5%;
             width: 90%;
-            height: 2px;
-            background-color: #eae5df;
+            height: 1px;
+            background-color: #E8E2D7;
             z-index: 0;
         }
 
@@ -160,184 +180,207 @@
         }
 
         .step-dot {
-            width: 44px;
-            height: 44px;
-            background-color: #ffffff;
-            border: 2px solid #c0a47a;
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border: 2px solid var(--main-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 12px auto;
-            color: #c0a47a;
-            font-weight: bold;
-            font-size: 10pt;
+            color: var(--main-gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.2s;
         }
 
         .timeline-step:hover .step-dot {
-            background-color: #c0a47a;
-            color: #ffffff;
+            background-color: var(--main-gold);
+            color: var(--white);
         }
 
         .step-label {
-            font-size: 11pt;
+            font-size: 14px;
             font-weight: 700;
-            color: #332d27;
+            color: var(--text-dark);
             margin-bottom: 4px;
         }
 
         .step-text {
-            font-size: 9.5pt;
-            color: #7a6e61;
+            font-size: 12px;
+            color: var(--text-muted);
         }
 
-        /* 各期間のセクションブロック */
-        .period-section {
-            margin-bottom: 80px;
-            scroll-margin-top: 40px;
-        }
-
+        /* PERIOD HEADERS & BADGES (nagare.html基準に再設計) */
         .period-header {
             display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #c0a47a;
-            padding-bottom: 12px;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 25px;
         }
 
         .period-badge {
-            background-color: #a39585;
-            color: #ffffff;
-            font-size: 10pt;
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
             font-weight: 700;
-            padding: 4px 16px;
+            background-color: var(--icon-accent);
+            color: var(--white);
+            padding: 4px 14px;
             border-radius: 20px;
-            margin-right: 15px;
             letter-spacing: 0.05em;
-            flex-shrink: 0;
+            display: inline-block;
+            margin-bottom: 12px;
         }
 
         .period-header h2 {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 20pt;
-            color: #332d27;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-dark);
+            line-height: 1.4;
         }
 
-        /* 3列タイルレイアウト */
-        .tile-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        /* 縦1列並び用のスタイル */
+        /* LIST & GRID CARDS (nagare.htmlの.flow-itemの共通化) */
         .tile-list-vertical {
             display: flex;
             flex-direction: column;
             gap: 24px;
-            margin: 0 auto 40px auto;
-            max-width: 850px;
+            margin-bottom: 50px;
+        }
+
+        .tile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
         .tile {
-            background-color: #faf6f0;
+            background-color: var(--card-beige);
+            border: 1px solid #E8E2D7;
             border-radius: 12px;
-            padding: 35px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(58, 50, 49, 0.02);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .tile:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(74, 63, 53, 0.06);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(58, 50, 49, 0.06);
         }
 
         .tile-title-box {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e0d8cd;
-            padding-bottom: 12px;
+            gap: 12px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(168, 150, 133, 0.2);
+            padding-bottom: 10px;
         }
 
-        .tile .icon {
-            color: #c0a47a;
-            font-size: 20pt;
+        .tile-title-box .icon {
+            color: var(--main-gold);
+            font-size: 18px;
             display: flex;
             align-items: center;
         }
 
         .tile h3 {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 14pt;
+            font-size: 16px;
             font-weight: 700;
-            color: #332d27;
+            color: var(--text-dark);
+            margin: 0;
         }
 
         .tile p {
-            font-size: 10.5pt;
-            color: #5c5246;
-            line-height: 1.8;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.7;
         }
 
         /* 当日2分割エリア */
         .day-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
         .split-card {
-            background-color: #faf6f0;
-            padding: 35px;
+            background-color: var(--card-beige);
+            border: 1px solid #E8E2D7;
+            padding: 30px;
             border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(58, 50, 49, 0.02);
         }
 
         .split-card h3 {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 15pt;
+            font-size: 18px;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: #332d27;
+            color: var(--text-dark);
             display: flex;
             align-items: center;
+            gap: 10px;
         }
 
         .split-card h3 i {
-            color: #c0a47a;
-            margin-right: 12px;
+            color: var(--main-gold);
         }
 
         .split-card .bullet-list {
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
         .split-card .bullet-list li {
-            font-size: 10.5pt;
+            font-size: 14px;
             margin-bottom: 15px;
-            color: #5c5246;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .split-card .bullet-list li::before {
+            content: "•";
+            color: var(--main-gold);
+            font-weight: bold;
+            font-size: 16px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .split-card .bullet-list li:last-child {
+            margin-bottom: 0;
         }
 
         .split-card .bullet-list li strong {
-            color: #332d27;
+            color: var(--text-dark);
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
+            font-weight: 700;
         }
 
         /* 手続き一覧テーブル */
         .table-section {
-            background-color: #ffffff;
-            border: 1px solid #eae5df;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 20px rgba(74, 63, 53, 0.02);
+            background-color: var(--white);
+            border: 1px solid #E8E2D7;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 4px 15px rgba(58, 50, 49, 0.02);
+            margin-bottom: 50px;
         }
 
         .table-section h3 {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 16pt;
-            margin-bottom: 25px;
-            color: #332d27;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
         }
 
         .table-container {
@@ -353,91 +396,62 @@
         }
 
         .table-wrapper th, .table-wrapper td {
-            padding: 18px 20px;
+            padding: 15px 18px;
             text-align: left;
-            font-size: 11pt;
+            font-size: 14px;
         }
 
         .table-wrapper th {
-            background-color: #faf6f0;
-            color: #332d27;
+            background-color: var(--card-beige);
+            color: var(--text-dark);
             font-weight: 700;
-            border-bottom: 2px solid #c0a47a;
+            border-bottom: 2px solid var(--main-gold);
         }
 
         .table-wrapper td {
-            border-bottom: 1px solid #eae5df;
-            color: #5c5246;
+            border-bottom: 1px solid #E8E2D7;
+            color: var(--text-muted);
         }
 
-        /* フッター結び */
-        .closing-banner {
-            background-color: #ffffff;
-            border-top: 1px solid #eae5df;
+        /* FOOTER */
+        footer {
             text-align: center;
-            padding: 80px 20px;
-            margin-top: 40px;
+            margin-top: 60px;
+            padding-bottom: 40px;
         }
 
         .footer-info {
-            color: #a39585;
-            font-size: 10.5pt;
-            letter-spacing: 0.05em;
+            font-size: 12px;
+            color: var(--text-muted);
         }
 
-        /* レスポンシブ対応 (スマートフォン・タブレット自動最適化) */
+        /* RESPONSIVE DESIGN (nagare.html仕様) */
         @media (max-width: 768px) {
-            /* スマホの時は画像の固定を解除し、1920:650の比率のまま自動縮小させる */
-            .hero-image-wrap {
-                height: auto;
-                aspect-ratio: 1920 / 650;
-            }
-
-            .hero-image-wrap img {
-                width: 100%;
-                height: 100%;
-                position: static;
-                transform: none;
-            }
-
-            .hero-text-wrap {
-                padding: 40px 20px;
-            }
-
-            .hero-section h1 { 
-                font-size: 22pt; 
-            }
-
-            .hero-section .lead-text {
-                font-size: 12pt;
-            }
-
             .container {
-                padding: 20px 15px 60px 15px;
+                margin-top: 20px;
             }
-
-            .period-section {
-                margin-bottom: 50px;
+            .header-visual {
+                margin-bottom: 25px;
             }
-
-            .period-header h2 {
-                font-size: 16pt;
+            .header-content {
+                padding: 0 15px 35px 15px;
             }
-
+            header h1 {
+                font-size: 26px;
+            }
+            .intro-block {
+                margin-bottom: 40px;
+            }
             .timeline-section {
                 padding: 20px;
-                margin-bottom: 50px;
             }
-
             .timeline-flow { 
                 flex-direction: column; 
-                gap: 24px; 
+                gap: 20px; 
             }
-
             .timeline-flow::before { 
                 display: none; 
             }
-            
             .timeline-step { 
                 width: 100%; 
                 display: flex; 
@@ -446,351 +460,355 @@
                 text-align: left; 
                 gap: 15px;
             }
-            
             .step-dot { 
                 margin: 0; 
                 width: 36px; 
                 height: 36px; 
                 flex-shrink: 0;
             }
-
             .tile-grid { 
                 grid-template-columns: 1fr; 
                 gap: 16px;
             }
-
             .tile {
                 padding: 20px;
             }
-
-            .tile-list-vertical { 
-                max-width: 100%; 
-                gap: 16px;
-            }
-
             .day-split { 
                 grid-template-columns: 1fr; 
                 gap: 16px;
             }
-
             .split-card {
                 padding: 20px;
             }
-
             .table-section {
                 padding: 20px;
             }
-
             .table-wrapper th, .table-wrapper td { 
                 padding: 12px; 
-                font-size: 10pt; 
-            }
-
-            .closing-banner {
-                padding: 50px 20px;
-            }
-
-            .closing-banner h2 {
-                font-size: 20pt;
             }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero-section">
-        <div class="hero-image-wrap">
+    <div class="container">
+        
+        <div class="header-visual">
             <img src="images/subara.png" alt="引っ越し準備ガイド メインイメージ">
         </div>
         
-        <div class="hero-text-wrap">
-            <div class="brand-sub">ROOM HUNTING GUIDE</div>
-            <h1>引っ越し準備の<br>やることリスト</h1>
-            <div class="header-line"></div>
-            <p class="lead-text">効率よく新生活をスタートするための完全ガイド</p>
-        </div>
-    </header>
+        <header>
+            <div class="header-content">
+                <span class="en-title">Room Hunting Guide</span>
+                <h1>引っ越し準備のやることリスト</h1>
+                <p class="lead-text">効率よく新生活をスタートするための完全ガイド</p>
+            </div>
+        </header>
 
-    <main class="container">
+        <main>
+            <section class="intro-block">
+                <p>引っ越しのタスクは多岐にわたります。全体スケジュールを把握して、計画的に新生活の準備を進めましょう。</p>
+            </section>
 
-        <section class="intro-block">
-        </section>
+            <section class="timeline-section">
+                <h3>引っ越し完了までのステップ</h3>
+                <div class="timeline-flow">
+                    <div class="timeline-step">
+                        <div class="step-dot">01</div>
+                        <div>
+                            <div class="step-label">1ヶ月前</div>
+                            <div class="step-text">計画・業者決定</div>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-dot">02</div>
+                        <div>
+                            <div class="step-label">2週間前</div>
+                            <div class="step-text">手続き・梱包</div>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-dot">03</div>
+                        <div>
+                            <div class="step-label">前日</div>
+                            <div class="step-text">最終搬出準備</div>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-dot">04</div>
+                        <div>
+                            <div class="step-label">当日</div>
+                            <div class="step-text">搬出と新居搬入</div>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-dot">05</div>
+                        <div>
+                            <div class="step-label">翌日以降</div>
+                            <div class="step-text">住所変更手続き</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section class="timeline-section">
-            <h3>引っ越し完了までのステップ</h3>
-            <div class="timeline-flow">
-                <div class="timeline-step">
-                    <div class="step-dot">01</div>
-                    <div>
-                        <div class="step-label">1ヶ月前</div>
-                        <div class="step-text">計画・業者決定</div>
-                    </div>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-dot">02</div>
-                    <div>
-                        <div class="step-label">2週間前</div>
-                        <div class="step-text">手続き・梱包</div>
-                    </div>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-dot">03</div>
-                    <div>
-                        <div class="step-label">前日</div>
-                        <div class="step-text">最終搬出準備</div>
-                    </div>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-dot">04</div>
-                    <div>
-                        <div class="step-label">当日</div>
-                        <div class="step-text">搬出と新居搬入</div>
-                    </div>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-dot">05</div>
-                    <div>
-                        <div class="step-label">翌日以降</div>
-                        <div class="step-text">住所変更手続き</div>
-                    </div>
-                </div>
+            <div class="section-title">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <h2>引越し1ヶ月前〜のご準備</h2>
             </div>
-        </section>
 
-        <section class="period-section">
-            <div class="period-header">
-                <span class="period-badge">STEP 01</span>
-                <h2>1ヶ月前：土台作りと予約</h2>
-            </div>
-            <div class="tile-list-vertical">
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-house-chimney-user"></i></div>
-                        <h3>退去・入居の確定</h3>
-                    </div>
-                    <p>現在の住まいの退去日を管理会社へ通知し、新居の入居日を確定させます。<br>解約予告期間の確認が最優先です。賃貸契約の場合は賃賃借契約書を確認し、誰にいつまでに退去日を知らせるべきか把握しましょう。<br>家賃の支払い期間や業者の料金を考慮して調整することで出費を抑えられます。</p>
+            <section class="period-section">
+                <div class="period-header">
+                    <span class="period-badge">STEP 01</span>
+                    <h2>1ヶ月前：土台作りと予約</h2>
                 </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-truck-moving"></i></div>
-                        <h3>引っ越し業者の選定</h3>
+                <div class="tile-list-vertical">
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-house-chimney-user"></i></div>
+                            <h3>退去・入居の確定</h3>
+                        </div>
+                        <p>現在の住まいの退去日を管理会社へ通知し、新居の入居日を確定させます。<br>解約予告期間の確認が最優先です。賃貸契約の場合は賃貸借契約書を確認し、誰にいつまでに退去日を知らせるべきか把握しましょう。<br>家賃の支払い期間や業者の料金を考慮して調整することで出費を抑えられます。</p>
                     </div>
-                    <p>複数社から相見積もりを取り、料金とサービスを比較。引っ越し料金には定価がなく、時期や荷物量、混み具合で変動します。<br>なるべく出費を抑えたいならば、複数業者へ見積もり依頼（相見積もり）をして比較検討しましょう。<br>繁忙期は予約が埋まりやすいため、早めに確定しましょう。<br><br>●一括見積もりの活用<br>・サイトを利用して、一度に複数社へ見積もりを依頼します。電話対応が煩わしい場合は、メール連絡のみが選べるサービスを利用するのがおすすめです。<br><br>●訪問見積りで正確な料金を算出する<br>・正確な荷物量の申告：正確な料金を出してもらうため、営業担当者に自宅へ来てもらう「訪問見積もり」を依頼します。<br>・作業員数とトラックの確認：見積書には、トラックのサイズや作業人数が明記されているか必ず確認します。<br><br>●サービス内容とオプションを比較する<br>・基本サービスの違い：ダンボールの無料提供、家具の分解・設置、ベッドの解体などが基本料金に含まれているか確認します。<br></p>
-                </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-school"></i></div>
-                        <h3>入居日を決める＆転校・教育の手続き</h3>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-truck-moving"></i></div>
+                            <h3>引っ越し業者の選定</h3>
+                        </div>
+                        <p>複数社から相見積もりを取り、料金とサービスを比較。引っ越し料金には定価がなく、時期や荷物量、混み具合で変動します。<br>なるべく出費を抑えたいならば、複数業者へ見積もり依頼（相見積もり）をして比較検討しましょう。<br>繁忙期は予約が埋まりやすいため、早めに確定しましょう。<br><br>●一括見積もりの活用<br>・サイトを利用して、一度に複数社へ見積もりを依頼します。電話対応が煩わしい場合は、メール連絡のみが選べるサービスを利用するのがおすすめです。<br><br>●訪問見積りで正確な料金を算出する<br>・正確な荷物量の申告：正確な料金を出してもらうため、営業担当者に自宅へ来てもらう「訪問見積もり」を依頼します。<br>・作業員数とトラックの確認：見積書には、トラックのサイズや作業人数が明記されているか必ず確認します。<br><br>●サービス内容とオプションを比較する<br>・基本サービスの違い：ダンボールの無料提供、家具の分解・設置、ベッドの解体などが基本料金に含まれているか確認します。</p>
                     </div>
-                    <p>引っ越し業者が決まったら入居日を決めて不動産会社へ通知します。<br>また、お子様がいれば引っ越しが決まった時点ですぐに学校（小・中・高）へ相談しましょう。「在学証明書」・「教科書給付証明書」など、転校に必要な書類の準備を開始します。<br><br>●転校前の学校にもらうもの<br>・在学証明書<br>・教科書給付証明書<br>遅くとも引越しをする1カ月前までに担任の先生に伝え、住所が決まったらこれらをもらうようにしましょう。この2点は転校先の学校に提出しなければいけません。学校からもらったら、大切に保管しておいてください。<br><br>●引越し前に役所でもらうもの<br>・転入学通知書<br>どこの学校に入学するのか記された書面です。こちらも合わせて転校先の学校に提出します。<br><br>同じ市区町村内ならば、比較的手続きは簡単です。引越し先が近いので、引越す前に学校を見学したり体操服や上履きといった学校生活で必要なものを事前に確認しておくと後で便利です。</p>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-school"></i></div>
+                            <h3>入居日を決める＆転校・教育の手続き</h3>
+                        </div>
+                        <p>引っ越し業者が決まったら入居日を決めて不動産会社へ通知します。<br>また、お子様がいれば引っ越しが決まった時点ですぐに学校（小・中・高）へ相談しましょう。「在学証明書」・「教科書給付証明書」など、転校に必要な書類の準備を開始します。<br><br>●転校前の学校にもらうもの<br>・在学証明書<br>・教科書給付証明書<br>遅くとも引越しをする1カ月前までに担任の先生に伝え、住所が決まったらこれらをもらうようにしましょう。この2点は転校先の学校に提出しなければいけません。学校からもらったら、大切に保管しておいてください。<br><br>●引越し前に役所でもらうもの<br>・転入学通知書<br>どこの学校に入学するのか記された書面です。こちらも合わせて転校先の学校に提出します。<br><br>同じ市区町村内ならば、比較的手続きは簡単です。引越し先が近いので、引越す前に学校を見学したり体操服や上履きといった学校生活で必要なものを事前に確認しておくと後で便利です。</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="period-section">
-            <div class="period-header">
-                <span class="period-badge">STEP 02</span>
-                <h2>インフラと重要サービスの手続き</h2>
-            </div>
-            <div class="tile-list-vertical">
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-bolt"></i></div>
-                        <h3>電気・ガス・水道</h3>
-                    </div>
-                    <p>引越しが決まり次第、早めに手続きしてください。（旧居の使用停止と新居の開始予約。）<br><br>●電気・水道<br>各地域の電力会社・水道局のウェブサイト、または電話で停止と開始の連絡をします。<br>●ガス<br>ガスの使用開始（開栓）には必ず立ち会いが必要です。</p>
+            <section class="period-section">
+                <div class="period-header">
+                    <span class="period-badge">STEP 02</span>
+                    <h2>インフラと重要サービスの手続き</h2>
                 </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-wifi"></i></div>
-                        <h3>インターネット・電話</h3>
+                <div class="tile-list-vertical">
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                            <h3>電気・ガス・水道</h3>
+                        </div>
+                        <p>引越しが決まり次第、早めに手続きしてください。（旧居の使用停止と新居の開始予約。）<br><br>●電気・水道<br>各地域の電力会社・水道局のウェブサイト、または電話で停止と開始の連絡をします。<br>●ガス<br>ガスの使用開始（開栓）には必ず立ち会いが必要です。</p>
                     </div>
-                    <p>回線の移転や新規契約は工事に時間がかかるため、1ヶ月前から連絡します。<br>インターネット無料の物件もあるので早めに不動産会社に確認をしましょう。</p>
-                </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3>各種保険の住所変更</h3>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-wifi"></i></div>
+                            <h3>インターネット・電話</h3>
+                        </div>
+                        <p>回線の移転や新規契約は工事に時間がかかるため、1ヶ月前から連絡します。<br>インターネット無料の物件もあるので早めに不動産会社に確認をしましょう。</p>
                     </div>
-                    <p>火災保険や地震保険の住所変更、または新規加入の手続きを行います。<br>賃賃物件の場合、管理会社指定の保険に加入することがほとんどです。</p>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <h3>各種保険の住所変更</h3>
+                        </div>
+                        <p>火災保険や地震保険の住所変更、または新規加入の手続きを行います。<br>賃貸物件の場合、管理会社指定 of 保険に加入することがほとんどです。</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="period-section">
-            <div class="period-header">
-                <span class="period-badge">STEP 03</span>
-                <h2>2週間前：不用品の処分と荷造り</h2>
+            <div class="section-title">
+                <span class="material-symbols-outlined">box</span>
+                <h2>引越し2週間前〜当日のご準備</h2>
             </div>
-            <div class="tile-grid">
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-trash-can"></i></div>
-                        <h3>不用品・粗大ゴミ処分</h3>
-                    </div>
-                    <p>粗大ゴミの回収は予約制。リサイクルショップやフリマアプリの活用も含め、早めに処分計画を立てましょう。</p>
-                </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-box-open"></i></div>
-                        <h3>梱包資材の調達</h3>
-                    </div>
-                    <p>業者から支給されるダンボールの数を確認。不足分はスーパー等で調達し、テープや緩衝材を揃えます。</p>
-                </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-layer-group"></i></div>
-                        <h3>季節外品から荷造り</h3>
-                    </div>
-                    <p>普段使わないもの（本、季節の衣類、予備食器）から梱包開始。箱には中身と運び先を明記します。</p>
-                </div>
-            </div>
-        </section>
 
-        <section class="period-section">
-            <div class="period-header">
-                <span class="period-badge">STEP 04</span>
-                <h2>役所と郵便の手続き</h2>
-            </div>
-            <div class="tile-list-vertical">
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-file-signature"></i></div>
-                        <h3>役所の手続き（住民票の移動）</h3>
-                    </div>
-                    <p>引っ越し前と後で、お住まいの地域が変わるか同じかによって手続きが異なります。<br><br>
-                    <strong>● 異なる市区町村へ引っ越す場合</strong><br>
-                    ・転出届（引越し前）: 引越しの約14日前から手続き可能です。現在住んでいる市区町村の役所窓口、または「マイナポータル」からのオンライン申請で転出証明書を受け取ります（マイナンバーカードがあれば転出証明書の交付が省略される場合があります）。<br>
-                    ・転入届（引越し後）: 引越し後（新住所に住み始めた日）から14日以内に、新しい住所の市区町村役場で手続きします。「転出証明書」と本人確認書類を持参してください。<br><br>
-                    <strong>●同じ市区町村内で引っ越す場合</strong><br>
-                    ・転居届（引っ越し後）: 引っ越し後14日以内に、役所の窓口へ「転居届」を提出します。<br><br>
-                    <span style="color: #a38558;">※役所の手続きは法律で義務付けられており、正当な理由なく14日を過ぎると最大5万円の過料が科される可能性があるので注意しましょう。</span></p>
+            <section class="period-section">
+                <div class="period-header">
+                    <span class="period-badge">STEP 03</span>
+                    <h2>2週間前：不用品の処分と荷造り</h2>
                 </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-envelope-open-text"></i></div>
-                        <h3>郵便物の転送設定</h3>
+                <div class="tile-grid">
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-trash-can"></i></div>
+                            <h3>不用品・粗大ゴミ処分</h3>
+                        </div>
+                        <p>粗大ゴミの回収は予約制。リサイクルショップやフリマアプリの活用も含め、早めに処分計画を立てましょう。</p>
                     </div>
-                    <p>郵便局の窓口やWebから「e転居」を申請。1年間の転送が可能です。<br><br>
-                    ・必要なもの：本人確認書類（運転免許証、マイナンバーカードなど）<br>
-                    ・タイミング：引っ越し日の数日前までに手続きをしておくと安心です。</p>
-                </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-motorcycle"></i></div>
-                        <h3>原付・バイクの廃車</h3>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-box-open"></i></div>
+                            <h3>梱包資材の調達</h3>
+                        </div>
+                        <p>業者から支給されるダンボールの数を確認。不足分はスーパー等で調達し、テープや緩衝材を揃えます。</p>
                     </div>
-                    <p>原付（125cc以下）の引越し手続きは、現在お住まいの市区町村で「廃車手続き（ナンバープレートの返納）」を行い、引越し先で「新規登録」をするのが基本です。引越し先の市区町村によっては、旧ナンバーを引越し先役所で一括変更できる便利な特例もあります。<br><br>
-                    <strong>●旧住所での手続き（廃車）</strong><br>
-                    引越し前に、ナンバーを取得した市区町村の役場（または税務署）で廃車手続きを行います。<br>
-                    ・持ち物：ナンバープレート、標識交付証明書、印鑑、本人確認書類（免許証など）<br>
-                    ・手続き後：「廃車申告受付書」を受け取ります。これは引越し先での再登録や、自賠責保険の住所変更に必要です。<br><br>
-                    <strong>●新住所での手続き（再登録）</strong><br>
-                    引越し後（新住所へ住民票を移した後）、15日以内に新しい市区町村の役場窓口で登録します。<br>
-                    ・持ち物：廃車申告受付書、本人確認書類、印鑑、標識交付証明書（紛失していても手続き可能な場合があります）<br>
-                    ・交付： 窓口で手続きを行うと、新しいナンバープレートとその場で交付されます。</p>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-layer-group"></i></div>
+                            <h3>季節外品から荷造り</h3>
+                        </div>
+                        <p>普段使わないもの（本、季節の衣類、予備食器）から梱包開始。箱には中身と運び先を明記します。</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="period-section">
-            <div class="period-header">
-                <span class="period-badge">STEP 05</span>
-                <h2>1週間前〜前日：最終準備</h2>
-            </div>
-            <div class="tile-list-vertical">
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                        <h3>挨拶品の用意</h3>
+            <section class="period-section">
+                <div class="period-header">
+                    <span class="period-badge">STEP 04</span>
+                    <h2>役所と郵便の手続き</h2>
+                </div>
+                <div class="tile-list-vertical">
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-file-signature"></i></div>
+                            <h3>役所の手続き（住民票の移動）</h3>
+                        </div>
+                        <p>引っ越し前と後で、お住まいの地域が変わるか同じかによって手続きが異なります。<br><br>
+                        <strong>● 異なる市区町村へ引っ越す場合</strong><br>
+                        ・転出届（引越し前）: 引越しの約14日前から手続き可能です。現在住んでいる市区町村の役所窓口、または「マイナポータル」からのオンライン申請で転出証明書を受け取ります（マイナンバーカードがあれば転出証明書の交付が省略される場合があります）。<br>
+                        ・転入届（引越し後）: 引越し後（新住所に住み始めた日）から14日以内に、新しい住所の市区町村役場で手続きします。「転出証明書」と本人確認書類を持参してください。<br><br>
+                        <strong>●同じ市区町村内で引っ越す場合</strong><br>
+                        ・転居届（引っ越し後）: 引っ越し後14日以内に、役所の窓口へ「転居届」を提出します。<br><br>
+                        <span style="color: var(--main-gold); font-weight: 500;">※役所の手続きは法律で義務付けられており、正当な理由なく14日を過ぎると最大5万円の過料が科される可能性があるので注意しましょう。</span></p>
                     </div>
-                    <p>旧居・新居それぞれの近隣への挨拶品を用意。500〜1000円程度の消耗品が一般的です。<br>タオル、洗剤、ラップなどの実用品や、個包装の焼き菓子などが人気です。<br><br>・渡す範囲： マンション・アパートの場合は「両隣と上下階」、戸建ての場合は「両隣と向かいの3軒、および裏の家」が一般的です。<br>・のしの選び方： 表書きは「御挨拶」、名前には「旧姓」や「新しい苗字」を入れます。誰からの贈り物かすぐにわかるよう「外のし」にするのが基本です。</p>
-                </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-broom"></i></div>
-                        <h3>旧居の清掃・新居準備</h3>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                            <h3>郵便物の転送設定</h3>
+                        </div>
+                        <p>郵便局の窓口やWebから「e転居」を申請。1年間の転送が可能です。<br><br>
+                        ・必要なもの：本人確認書類（運転免許証、マイナンバーカードなど）<br>
+                        ・タイミング：引っ越し日の数日前までに手続きをしておくと安心です。</p>
                     </div>
-                    <p>感謝を込めて旧居を清掃。気持ちよく退去をしましょう！<br><br>新居では荷物が入る前に清掃・バルサン等の防虫処理も検討しましょう。<br>カーテンの採寸・注文や家具の配置決めをしておくと引越し当日の作業がスムーズになります。</p>
-                </div>
-                <div class="tile">
-                    <div class="tile-title-box">
-                        <div class="icon"><i class="fa-solid fa-snowflake"></i></div>
-                        <h3>冷蔵庫・洗濯機の水抜き</h3>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-motorcycle"></i></div>
+                            <h3>原付・バイクの廃車</h3>
+                        </div>
+                        <p>原付（125cc以下）の引越し手続きは、現在お住まいの市区町村で「廃車手続き（ナンバープレートの返納）」を行い、引越し先で「新規登録」をするのが基本です。引越し先の市区町村によっては、旧ナンバーを引越し先役所で一括変更できる便利な特例もあります。<br><br>
+                        <strong>●旧住所での手続き（廃車）</strong><br>
+                        引越し前に、ナンバーを取得した市区町村の役場（または税務署）で廃車手続きを行います。<br>
+                        ・持ち物：ナンバープレート、標識交付証明書、印鑑、本人確認書類（免許証など）<br>
+                        ・手続き後：「廃車申告受付書」を受け取ります。これは引越し先での再登録や、自賠責保険の住所変更に必要です。<br><br>
+                        <strong>●新住所での手続き（再登録）</strong><br>
+                        引越し後（新住所へ住民票を移した後）、15日以内に新しい市区町村の役場窓口で登録します。<br>
+                        ・持ち物：廃車申告受付書、本人確認書類、印鑑、標識交付証明書（紛失していても手続き可能な場合があります）<br>
+                        ・交付： 窓口で手続きを行うと、新しいナンバープレートとその場で交付されます。</p>
                     </div>
-                    <p>前日までに中身を空にし、コンセントを抜いて水抜きを実施。<br>水漏れ・故障の防止かつ、運搬中のカビや悪臭発生を防ぎます。<br>灯油ストーブも空にします。</p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="period-section">
-            <div class="period-header">
-                <span class="period-badge">STEP 06</span>
-                <h2>当日：搬出と搬入作業</h2>
-            </div>
-            <div class="day-split">
-                <div class="split-card">
-                    <h3><i class="fa-solid fa-clipboard-check"></i>旧居での搬出作業</h3>
-                    <ul class="bullet-list">
-                        <li><strong>最終搬出確認</strong>荷物の積み忘れ、忘れ物確認を行います。</li>
-                        <li><strong>電気・水道の確認</strong>ブレーカーを落とし電気をOFFにし、水道の元栓を確認します。</li>
-                        <li><strong>明け渡し手続き</strong>管理会社へ鍵の返却、部屋の状態確認（立ち会い）を行います。</li>
-                    </ul>
+            <section class="period-section">
+                <div class="period-header">
+                    <span class="period-badge">STEP 05</span>
+                    <h2>1週間前〜前日：最終準備</h2>
                 </div>
-                <div class="split-card">
-                    <h3><i class="fa-solid fa-house-laptop"></i>新居での搬入作業</h3>
-                    <ul class="bullet-list">
-                        <li><strong>家具配置の指示出し</strong>あらかじめ決めた位置へ搬入をスムーズに誘導します。</li>
-                        <li><strong>ガスの開栓立ち会い</strong>事前予約の通りに開栓に立ち会います。</li>
-                        <li><strong>優先開梱</strong>当日就寝に必要な荷物（寝具・洗面用具）を優先して開封します。</li>
-                    </ul>
+                <div class="tile-list-vertical">
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                            <h3>挨拶品の用意</h3>
+                        </div>
+                        <p>旧居・新居それぞれの近隣への挨拶品を用意。500〜1000円程度の消耗品が一般的です。<br>タオル、洗剤、ラップなどの実用品や、個包装の焼き菓子などが人気です。<br><br>・渡す範囲： マンション・アパートの場合は「両隣と上下階」、戸建ての場合は「両隣と向かいの3軒、および裏の家」が一般的です。<br>・のしの選び方： 表書きは「御挨拶」、名前には「旧姓」や「新しい苗字」を入れます。誰からの贈り物かすぐにわかるよう「外のし」にするのが基本です。</p>
+                    </div>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-broom"></i></div>
+                            <h3>旧居の清掃・新居準備</h3>
+                        </div>
+                        <p>感謝を込めて旧居を清掃。気持ちよく退去をしましょう！<br><br>新居では荷物が入る前に清掃・バルサン等の防虫処理も検討しましょう。<br>カーテンの採寸・注文や家具の配置決めをしておくと引越し当日の作業がスムーズになります。</p>
+                    </div>
+                    <div class="tile">
+                        <div class="tile-title-box">
+                            <div class="icon"><i class="fa-solid fa-snowflake"></i></div>
+                            <h3>冷蔵庫・洗濯機の水抜き</h3>
+                        </div>
+                        <p>前日までに中身を空にし、コンセントを抜いて水抜きを実施。<br>水漏れ・故障や運搬中のカビ・悪臭発生を防ぎます。<br>灯油ストーブも空にします。</p>
+                    </div>
                 </div>
+            </section>
+
+            <section class="period-section">
+                <div class="period-header">
+                    <span class="period-badge">STEP 06</span>
+                    <h2>当日：搬出と搬入作業</h2>
+                </div>
+                <div class="day-split">
+                    <div class="split-card">
+                        <h3><i class="fa-solid fa-clipboard-check"></i>旧居での搬出作業</h3>
+                        <ul class="bullet-list">
+                            <li>
+                                <strong>最終搬出確認</strong>荷物の積み忘れ、忘れ物確認を行います。
+                            </li>
+                            <li>
+                                <strong>電気・水道の確認</strong>ブレーカーを落とし電気をOFFにし、水道の元栓を確認します。
+                            </li>
+                            <li>
+                                <strong>明け渡し手続き</strong>管理会社へ鍵の返却、部屋の状態確認（立ち会い）を行います。
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="split-card">
+                        <h3><i class="fa-solid fa-house-laptop"></i>新居での搬入作業</h3>
+                        <ul class="bullet-list">
+                            <li>
+                                <strong>家具配置の指示出し</strong>あらかじめ決めた位置へ搬入をスムーズに誘導します。
+                            </li>
+                            <li>
+                                <strong>ガスの開栓立ち会い</strong>事前予約の通りに開栓に立ち会います。
+                            </li>
+                            <li>
+                                <strong>優先開梱</strong>当日就寝に必要な荷物（寝具・洗面用具）を優先して開封します。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <h3>主要な手続きと必要書類一覧</h3>
+                <div class="table-container">
+                    <table class="table-wrapper">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;" scope="col">提出先</th>
+                                <th style="width: 35%;" scope="col">手続き内容</th>
+                                <th style="width: 40%;" scope="col">必要書類・持ち物</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>旧住所の役所</strong></td>
+                                <td>転出届の提出</td>
+                                <td>本人確認書類、印鑑</td>
+                            </tr>
+                            <tr>
+                                <td><strong>新住所の役所</strong></td>
+                                <td>転入届・マイナンバー</td>
+                                <td>転出証明書、本人確認書類</td>
+                            </tr>
+                            <tr>
+                                <td><strong>警察署</strong></td>
+                                <td>免許証の住所変更</td>
+                                <td>運転免許証、新住民票</td>
+                            </tr>
+                            <tr>
+                                <td><strong>金融機関</strong></td>
+                                <td>住所変更届</td>
+                                <td>届出印、新住所の確認書類</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-info">
+                &copy; noahlivehome.jp 
             </div>
-        </section>
+        </footer>
 
-        <section class="period-section table-section">
-            <h3>主要な手続きと必要書類一覧</h3>
-            <div class="table-container">
-                <table class="table-wrapper">
-                    <thead>
-                        <tr>
-                            <th style="width: 25%;">提出先</th>
-                            <th style="width: 35%;">手続き内容</th>
-                            <th style="width: 40%;">必要書類・持ち物</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>旧住所の役所</strong></td>
-                            <td>転出届の提出</td>
-                            <td>本人確認書類、印鑑</td>
-                        </tr>
-                        <tr>
-                            <td><strong>新住所の役所</strong></td>
-                            <td>転入届・マイナンバー</td>
-                            <td>転出証明書、本人確認書類</td>
-                        </tr>
-                        <tr>
-                            <td><strong>警察署</strong></td>
-                            <td>免許証の住所変更</td>
-                            <td>運転免許証、新住民票</td>
-                        </tr>
-                        <tr>
-                            <td><strong>金融機関</strong></td>
-                            <td>住所変更届</td>
-                            <td>届出印、新住所の確認書類</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    </div>
 
-    </main>
-
-    <footer class="closing-banner">
-        <div class="footer-info">
-            Ⓒnoahlivehome.jp 
-        </div>
-    </footer>
 </body>
 </html>
