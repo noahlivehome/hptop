@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Lato:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* 共通設定 */
         * {
@@ -17,7 +17,7 @@
         }
 
         body {
-            font-family: 'Lato', "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+            font-family: 'Lato', "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
             background-color: #ffffff;
             color: #332d27;
             line-height: 1.8;
@@ -43,34 +43,27 @@
             overflow: hidden;
         }
 
-        /* --------------------------------------------------
-         * 『heya.html』のスタイルを参照・最適化したヘッダー画像エリア
-         * -------------------------------------------------- */
+        /* ヘッダー画像エリア（nagare.htmlのスタイルを統合） */
         .hero-image-wrap {
             width: 100%;
-            max-width: 100%;
-            height: 450px; /* heya.htmlのメインビジュアルのスケール感に合わせた美しい高さ */
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
+            margin-bottom: 35px;
         }
 
         .hero-image-wrap img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
+            height: auto;
             display: block;
+            box-shadow: 0 2px 10px rgba(58, 50, 49, 0.03);
         }
 
         /* ヘッダーのテキストエリア */
         .hero-text-wrap {
-            padding: 60px 20px;
+            padding: 0 20px 45px 20px;
         }
 
         .brand-sub {
             font-family: 'Noto Serif JP', serif;
-            font-size: 12pt;
+            font-size: 16px;
             color: #c0a47a;
             font-weight: 500;
             letter-spacing: 0.3em;
@@ -80,7 +73,7 @@
 
         .hero-section h1 {
             font-family: 'Noto Serif JP', serif;
-            font-size: 36pt;
+            font-size: 48px;
             font-weight: 700;
             line-height: 1.4;
             color: #332d27;
@@ -95,7 +88,7 @@
         }
 
         .hero-section .lead-text {
-            font-size: 14pt;
+            font-size: 18px;
             color: #8c7e6c;
             max-width: 700px;
             margin: 0 auto;
@@ -112,6 +105,8 @@
         .intro-block {
             text-align: center;
             margin-bottom: 60px;
+            font-size: 16px;
+            color: #5c5246;
         }
 
         /* タイムライン */
@@ -126,7 +121,7 @@
 
         .timeline-section h3 {
             font-family: 'Noto Serif JP', serif;
-            font-size: 15pt;
+            font-size: 20px;
             margin-bottom: 30px;
             text-align: center;
         }
@@ -167,7 +162,7 @@
             margin: 0 auto 12px auto;
             color: #c0a47a;
             font-weight: bold;
-            font-size: 10pt;
+            font-size: 14px;
         }
 
         .timeline-step:hover .step-dot {
@@ -176,14 +171,14 @@
         }
 
         .step-label {
-            font-size: 11pt;
+            font-size: 15px;
             font-weight: 700;
             color: #332d27;
             margin-bottom: 4px;
         }
 
         .step-text {
-            font-size: 9.5pt;
+            font-size: 13px;
             color: #7a6e61;
         }
 
@@ -204,7 +199,7 @@
         .period-badge {
             background-color: #a39585;
             color: #ffffff;
-            font-size: 10pt;
+            font-size: 14px;
             font-weight: 700;
             padding: 4px 16px;
             border-radius: 20px;
@@ -215,7 +210,7 @@
 
         .period-header h2 {
             font-family: 'Noto Serif JP', serif;
-            font-size: 20pt;
+            font-size: 26px;
             color: #332d27;
         }
 
@@ -257,22 +252,24 @@
             padding-bottom: 12px;
         }
 
-        .tile .icon {
+        .tile-title-box .icon {
             color: #c0a47a;
-            font-size: 20pt;
+            font-size: 20px;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         .tile h3 {
             font-family: 'Noto Serif JP', serif;
-            font-size: 14pt;
+            font-size: 18px;
             font-weight: 700;
             color: #332d27;
+            flex-grow: 1;
         }
 
         .tile p {
-            font-size: 10.5pt;
+            font-size: 14px;
             color: #5c5246;
             line-height: 1.8;
         }
@@ -292,8 +289,8 @@
 
         .split-card h3 {
             font-family: 'Noto Serif JP', serif;
-            font-size: 15pt;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 25px;
             color: #332d27;
             display: flex;
             align-items: center;
@@ -309,15 +306,32 @@
         }
 
         .split-card .bullet-list li {
-            font-size: 10.5pt;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 20px;
             color: #5c5246;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        /* 箇流書きのドットを上品に再現 */
+        .split-card .bullet-list li::before {
+            content: "•";
+            color: #c0a47a;
+            font-weight: bold;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .split-card .bullet-list li:last-child {
+            margin-bottom: 0;
         }
 
         .split-card .bullet-list li strong {
             color: #332d27;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         /* 手続き一覧テーブル */
@@ -331,7 +345,7 @@
 
         .table-section h3 {
             font-family: 'Noto Serif JP', serif;
-            font-size: 16pt;
+            font-size: 22px;
             margin-bottom: 25px;
             color: #332d27;
         }
@@ -351,7 +365,7 @@
         .table-wrapper th, .table-wrapper td {
             padding: 18px 20px;
             text-align: left;
-            font-size: 11pt;
+            font-size: 15px;
         }
 
         .table-wrapper th {
@@ -377,28 +391,23 @@
 
         .footer-info {
             color: #a39585;
-            font-size: 10.5pt;
+            font-size: 14px;
             letter-spacing: 0.05em;
         }
 
-        /* レスポンシブ対応 (スマートフォン・タブレット自動最適化) */
+        /* レスポンシブ対応 */
         @media (max-width: 768px) {
-            /* スマホ・タブレット時はアスペクト比を維持してスマートに表示 */
-            .hero-image-wrap {
-                height: auto;
-                aspect-ratio: 16 / 9;
-            }
-
+            /* hero-image-wrap関連のメディアクエリはnagare.htmlの挙動と統合され、不要な絶対配置リセットも削除されました */
             .hero-text-wrap {
-                padding: 40px 20px;
+                padding: 40px 15px 35px 15px;
             }
 
             .hero-section h1 { 
-                font-size: 22pt; 
+                font-size: 28px; 
             }
 
             .hero-section .lead-text {
-                font-size: 12pt;
+                font-size: 16px;
             }
 
             .container {
@@ -410,7 +419,7 @@
             }
 
             .period-header h2 {
-                font-size: 16pt;
+                font-size: 20px;
             }
 
             .timeline-section {
@@ -472,7 +481,7 @@
 
             .table-wrapper th, .table-wrapper td { 
                 padding: 12px; 
-                font-size: 10pt; 
+                font-size: 14px; 
             }
 
             .closing-banner {
@@ -480,7 +489,7 @@
             }
 
             .closing-banner h2 {
-                font-size: 20pt;
+                font-size: 24px;
             }
         }
     </style>
@@ -503,6 +512,7 @@
     <main class="container">
 
         <section class="intro-block">
+            <p>引っ越しのタスクは多岐にわたります。全体スケジュールを把握して、計画的に新生活の準備を進めましょう。</p>
         </section>
 
         <section class="timeline-section">
@@ -557,14 +567,14 @@
                         <div class="icon"><i class="fa-solid fa-house-chimney-user"></i></div>
                         <h3>退去・入居の確定</h3>
                     </div>
-                    <p>現在の住まいの退去日を管理会社へ通知し、新居の入居日を確定させます。<br>解約予告期間の確認が最優先です。賃貸契約の場合は賃賃借契約書を確認し、誰にいつまでに退去日を知らせるべきか把握しましょう。<br>家賃の支払い期間や業者の料金を考慮して調整することで出費を抑えられます。</p>
+                    <p>現在の住まいの退去日を管理会社へ通知し、新居の入居日を確定させます。<br>解約予告期間の確認が最優先です。賃貸契約の場合は賃貸借契約書を確認し、誰にいつまでに退去日を知らせるべきか把握しましょう。<br>家賃の支払い期間や業者の料金を考慮して調整することで出費を抑えられます。</p>
                 </div>
                 <div class="tile">
                     <div class="tile-title-box">
                         <div class="icon"><i class="fa-solid fa-truck-moving"></i></div>
                         <h3>引っ越し業者の選定</h3>
                     </div>
-                    <p>複数社から相見積もりを取り、料金とサービスを比較。引っ越し料金には定価がなく、時期や荷物量、混み具合で変動します。<br>なるべく出費を抑えたいならば、複数業者へ見積もり依頼（相見積もり）をして比較検討しましょう。<br>繁忙期は予約が埋まりやすいため、早めに確定しましょう。<br><br>●一括見積もりの活用<br>・サイトを利用して、一度に複数社へ見積もりを依頼します。電話対応が煩わしい場合は、メール連絡のみが選べるサービスを利用するのがおすすめです。<br><br>●訪問見積りで正確な料金を算出する<br>・正確な荷物量の申告：正確な料金を出してもらうため、営業担当者に自宅へ来てもらう「訪問見積もり」を依頼します。<br>・作業員数とトラックの確認：見積書には、トラックのサイズや作業人数が明記されているか必ず確認します。<br><br>●サービス内容とオプションを比較する<br>・基本サービスの違い：ダンボールの無料提供、家具の分解・設置、ベッドの解体などが基本料金に含まれているか確認します。<br></p>
+                    <p>複数社から相見積もりを取り、料金とサービスを比較。引っ越し料金には定価がなく、時期や荷物量、混み具合で変動します。<br>なるべく出費を抑えたいならば、複数業者へ見積もり依頼（相見積もり）をして比較検討しましょう。<br>繁忙期は予約が埋まりやすいため、早めに確定しましょう。<br><br>●一括見積もりの活用<br>・サイトを利用して、一度に複数社へ見積もりを依頼します。電話対応が煩わしい場合は、メール連絡のみが選べるサービスを利用するのがおすすめです。<br><br>●訪問見積りで正確な料金を算出する<br>・正確な荷物量の申告：正確な料金を出してもらうため、営業担当者に自宅へ来てもらう「訪問見積もり」を依頼します。<br>・作業員数とトラックの確認：見積書には、トラックのサイズや作業人数が明記されているか必ず確認します。<br><br>●サービス内容とオプションを比較する<br>・基本サービスの違い：ダンボールの無料提供、家具の分解・設置、ベッドの解体などが基本料金に含まれているか確認します。</p>
                 </div>
                 <div class="tile">
                     <div class="tile-title-box">
@@ -601,7 +611,7 @@
                         <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
                         <h3>各種保険の住所変更</h3>
                     </div>
-                    <p>火災保険や地震保険の住所変更、または新規加入の手続きを行います。<br>賃賃物件の場合、管理会社指定の保険に加入することがほとんどです。</p>
+                    <p>火災保険や地震保険の住所変更、または新規加入の手続きを行います。<br>賃貸物件の場合、管理会社指定の保険に加入することがほとんどです。</p>
                 </div>
             </div>
         </section>
@@ -707,7 +717,7 @@
                         <div class="icon"><i class="fa-solid fa-snowflake"></i></div>
                         <h3>冷蔵庫・洗濯機の水抜き</h3>
                     </div>
-                    <p>前日までに中身を空にし、コンセントを抜いて水抜きを実施。<br>水漏れ・故障 of 補償の防止かつ、運搬中のカビや悪臭発生を防ぎます。<br>灯油ストーブも空にします。</p>
+                    <p>前日までに中身を空にし、コンセントを抜いて水抜きを実施。<br>水漏れ・故障や運搬中のカビ・悪臭発生を防ぎます。<br>灯油ストーブも空にします。</p>
                 </div>
             </div>
         </section>
@@ -721,17 +731,29 @@
                 <div class="split-card">
                     <h3><i class="fa-solid fa-clipboard-check"></i>旧居での搬出作業</h3>
                     <ul class="bullet-list">
-                        <li><strong>最終搬出確認</strong>荷物の積み忘れ、忘れ物確認を行います。</li>
-                        <li><strong>電気・水道の確認</strong>ブレーカーを落とし電気をOFFにし、水道の元栓を確認します。</li>
-                        <li><strong>明け渡し手続き</strong>管理会社へ鍵の返却、部屋の状態確認（立ち会い）を行います。</li>
+                        <li>
+                            <strong>最終搬出確認</strong>荷物の積み忘れ、忘れ物確認を行います。
+                        </li>
+                        <li>
+                            <strong>電気・水道の確認</strong>ブレーカーを落とし電気をOFFにし、水道の元栓を確認します。
+                        </li>
+                        <li>
+                            <strong>明け渡し手続き</strong>管理会社へ鍵の返却、部屋の状態確認（立ち会い）を行います。
+                        </li>
                     </ul>
                 </div>
                 <div class="split-card">
                     <h3><i class="fa-solid fa-house-laptop"></i>新居での搬入作業</h3>
                     <ul class="bullet-list">
-                        <li><strong>家具配置の指示出し</strong>あらかじめ決めた位置へ搬入をスムーズに誘導します。</li>
-                        <li><strong>ガスの開栓立ち会い</strong>事前予約の通りに開栓に立ち会います。</li>
-                        <li><strong>優先開梱</strong>当日就寝に必要な荷物（寝具・洗面用具）を優先して開封します。</li>
+                        <li>
+                            <strong>家具配置の指示出し</strong>あらかじめ決めた位置へ搬入をスムーズに誘導します。
+                        </li>
+                        <li>
+                            <strong>ガスの開栓立ち会い</strong>事前予約の通りに開栓に立ち会います。
+                        </li>
+                        <li>
+                            <strong>優先開梱</strong>当日就寝に必要な荷物（寝具・洗面用具）を優先して開封します。
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -743,9 +765,9 @@
                 <table class="table-wrapper">
                     <thead>
                         <tr>
-                            <th style="width: 25%;">提出先</th>
-                            <th style="width: 35%;">手続き内容</th>
-                            <th style="width: 40%;">必要書類・持ち物</th>
+                            <th style="width: 25%;" scope="col">提出先</th>
+                            <th style="width: 35%;" scope="col">手続き内容</th>
+                            <th style="width: 40%;" scope="col">必要書類・持ち物</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -756,7 +778,7 @@
                         </tr>
                         <tr>
                             <td><strong>新住所の役所</strong></td>
-                            <td>転入届の提出</td>
+                            <td>転入届・マイナンバー</td>
                             <td>転出証明書、本人確認書類</td>
                         </tr>
                         <tr>
