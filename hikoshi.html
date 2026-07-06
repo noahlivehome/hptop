@@ -34,12 +34,34 @@
             text-decoration: underline;
         }
 
-        /* フル幅ヘッダー */
+        /* ヘッダー全体の囲み */
         .hero-section {
             background-color: #ffffff;
-            padding: 100px 20px 60px 20px;
             text-align: center;
             border-bottom: 1px solid #eae5df;
+            width: 100%;
+        }
+
+        /* ヘッダー画像エリア（PC時は1920x650の枠を維持） */
+        .hero-image-wrap {
+            width: 100%;
+            max-width: 1920px;
+            height: 650px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* 画像自体のレスポンシブ設定 */
+        .hero-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 枠に合わせて綺麗にフィットさせる */
+            display: block;
+        }
+
+        /* ヘッダーのテキストエリア */
+        .hero-text-wrap {
+            padding: 60px 20px;
         }
 
         .brand-sub {
@@ -310,7 +332,6 @@
             color: #332d27;
         }
 
-        /* テーブルがスマホではみ出さないためのコンテナ */
         .table-container {
             width: 100%;
             overflow-x: auto;
@@ -320,7 +341,7 @@
         .table-wrapper {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px; /* スマホで潰れすぎないよう最小幅を設定 */
+            min-width: 500px;
         }
 
         .table-wrapper th, .table-wrapper td {
@@ -357,10 +378,9 @@
             margin-bottom: 25px;
         }
 
-        /* フッター画像を枠に綺麗に合わせる設定 */
         .closing-banner img {
             width: 100%;
-            max-width: 500px; /* 大きくなりすぎない上限 */
+            max-width: 500px;
             height: auto;
             border-radius: 12px;
             object-fit: cover;
@@ -375,8 +395,14 @@
 
         /* レスポンシブ対応 (スマートフォン・タブレット自動最適化) */
         @media (max-width: 768px) {
-            .hero-section {
-                padding: 60px 20px 40px 20px;
+            /* スマホの時は画像の高さを固定せず、1920:650の比率のまま自動縮小させる */
+            .hero-image-wrap {
+                height: auto;
+                aspect-ratio: 1920 / 650;
+            }
+
+            .hero-text-wrap {
+                padding: 40px 20px;
             }
 
             .hero-section h1 { 
@@ -474,10 +500,15 @@
 <body>
 
     <header class="hero-section">
-        <div class="brand-sub">ROOM HUNTING GUIDE</div>
-        <h1>引っ越し準備の<br>やることリスト</h1>
-        <div class="header-line"></div>
-        <p class="lead-text">効率よく新生活をスタートするための完全ガイド</p>
+        <div class="hero-image-wrap">
+            <img src="images/subara.png" alt="引っ越し準備ガイド メインイメージ"> </div>
+        
+        <div class="hero-text-wrap">
+            <div class="brand-sub">ROOM HUNTING GUIDE</div>
+            <h1>引っ越し準備の<br>やることリスト</h1>
+            <div class="header-line"></div>
+            <p class="lead-text">効率よく新生活をスタートするための完全ガイド</p>
+        </div>
     </header>
 
     <main class="container">
@@ -537,7 +568,7 @@
                         <div class="icon"><i class="fa-solid fa-house-chimney-user"></i></div>
                         <h3>退去・入居の確定</h3>
                     </div>
-                    <p>現在の住まいの退去日を管理会社へ通知し、新居の入居日を確定させます。<br>解約予告期間の確認が最優先です。賃貸契約の場合は賃貸借契約書を確認し、誰にいつまでに退去日を知らせるべきか把握しましょう。<br>家賃の支払い期間や業者の料金を考慮して調整することで出費を抑えられます。</p>
+                    <p>現在の住まいの退去日を管理会社へ通知し、新居の入居日を確定させます。<br>解約予告期間の確認が最優先です。賃貸契約の場合は賃賃借契約書を確認し、誰にいつまでに退去日を知らせるべきか把握しましょう。<br>家賃の支払い期間や業者の料金を考慮して調整することで出費を抑えられます。</p>
                 </div>
                 <div class="tile">
                     <div class="tile-title-box">
@@ -559,7 +590,7 @@
         <section class="period-section">
             <div class="period-header">
                 <span class="period-badge">STEP 02</span>
-                <h2>インフラと重要サービスの手続き</h2>
+                <h2>インフレと重要サービスの手続き</h2>
             </div>
           
 
@@ -761,6 +792,17 @@
             </div>
         </section>
 
+    </main>
+
+    <footer class="closing-banner">
+        <h2>素晴らしい新生活を</h2>
+        <img src="images/subara.png" alt="手続きイメージ">
+        <div class="footer-info">
+            Ⓒnoahlivehome.jp 
+        </div>
+    </footer>
+</body>
+</html>
     </main> <img src="images/subara.png" alt="手続きイメージ">
         <div class="footer-info">
             Ⓒnoahlivehome.jp 
