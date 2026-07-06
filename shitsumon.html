@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お部屋探しについてのよくある質問</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Playfair+Display:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* ご提示いただいた「流れ」のカラーパレットを完全流用 */
+        :root {
+            --bg-color: #ffffff;         /* サイト全体の背景を白に */
+            --card-beige: #F9F6F0;       /* 枠内（カード）を心地よいベージュ系に */
+            --point-bg: #F0EAE1;         /* ポイントカードの背景 */
+            --main-gold: #B89371;        /* よりはっきりさせたゴールド */
+            --icon-accent: #A89685;      /* アイコンや図形をくっきり見せる濃い目のココアベージュ */
+            --text-dark: #3A3231;        /* 文字も視認性を高めるため少し濃く */
+            --text-muted: #615553;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 750px; /* 画像がないため、テキストが間伸びしないよう横幅を少しスリムに最適化 */
+            margin: 40px auto 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER & MAIN VISUAL INTEGRATION (画像を削除し、ヘッダーのみで美しく完結) */
+        header {
+            overflow: hidden;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            background-color: var(--card-beige);
+            border: 1px solid #E8E2D7;
+            text-align: center;
+        }
+
+        .header-content {
+            padding: 50px 20px; /* テキストを主役にするための上品な余白 */
+        }
+
+        header .en-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            color: var(--main-gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        header h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background-color: var(--main-gold);
+        }
+
+        /* FAQ CARD SYSTEM */
+        .faq-item {
+            background-color: var(--card-beige);
+            border: 1px solid #E8E2D7;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(58, 50, 49, 0.02);
+        }
+
+        /* 質問（Q）のヘッダー */
+        .faq-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .q-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 700;
+            background-color: var(--main-gold);
+            color: var(--white);
+            padding: 4px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .faq-question-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        /* 回答（A）のボディ（画像を排除し、文章のみでスッキリと読ませるスタイル） */
+        .faq-body {
+            border-top: 1px dashed #E8E2D7;
+            padding-top: 20px;
+            margin-top: 15px;
+        }
+
+        .faq-text p {
+            margin: 0 0 15px 0;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .faq-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Aラベル（ココアベージュ） */
+        .a-label-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .a-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 12px;
+            font-weight: 700;
+            background-color: var(--icon-accent);
+            color: var(--white);
+            padding: 2px 10px;
+            border-radius: 4px;
+        }
+
+        /* フッター全体の装飾 */
+        .closing-banner {
+            background-color: #ffffff;
+            border-top: 1px solid #eae5df;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        /* LINEバナーリンクの設定 */
+        .footer-banner {
+            display: inline-block;
+            margin-bottom: 40px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-banner:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .footer-banner img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* コピーライトテキスト */
+        .footer-info {
+            color: #a39585;
+            font-size: 10.5pt;
+            letter-spacing: 0.05em;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                margin-top: 20px;
+            }
+            .header-content {
+                padding: 40px 15px;
+            }
+            header h1 {
+                font-size: 24px;
+            }
+            .faq-item {
+                padding: 25px;
+            }
+            .faq-question-title {
+                font-size: 16px;
+            }
+            .faq-text p {
+                font-size: 14px;
+            }
+            .closing-banner {
+                padding: 40px 20px;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="header-content">
+                <span class="en-title">Questions &amp; Answers</span>
+                <h1>よくある質問</h1>
+            </div>
+        </header>
+
+        <main>
+            
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.01</span>
+                    <h2 class="faq-question-title">駅から○○分とはどのくらいの距離ですか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>1分で80mの歩行で換算しています。概ねの時間と考えて下さい。
+                        <br>道路の信号待ちや踏切の電車待ちの時間は含まれていないので、実際は表示より時間がかかるのが一般的なようです。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.02</span>
+                    <h2 class="faq-question-title">ホームページに掲載している物件しか紹介してもらえないのでしょうか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>そんなことはありません。基本ホームページにすべての物件を載せることができません。<br>実際にお部屋が空いていても、「インターネット掲載不可」の物件等も多数あります。<br>また、当社管理物件も多数ございますので、まずはお問い合わせ下さい。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.03</span>
+                    <h2 class="faq-question-title">遠方に住んでいるため、1日でお部屋さがしをしたいのですが可能でしょうか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>可能になります。来社していただく前にお電話やメールで希望条件などをご相談ください。<br>当社にてお客様に合う物件をご用意させて頂きます。<br>また、インターネットであらかじめ希望物件を絞り込んでおくのもオススメです。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.04</span>
+                    <h2 class="faq-question-title">あらかじめ、希望する物件を探しておいてもらえますか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>もちろん可能です。メールもしくはお電話にて希望条件をお伝えください。<br>当社スタッフがお客様の条件にピッタリな物件をお探し致します！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.05</span>
+                    <h2 class="faq-question-title">物件はいつ頃から探したら良いのですか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>だいたい住む1ヶ月〜2ヶ月位前から探し始められるのが一般的です。<br>できれば余裕をもってお部屋を探しましょう。<br>物件探しから入居までスムーズに進めば約2週間程度です。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.06</span>
+                    <h2 class="faq-question-title">部屋の改装や改造はできますか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>基本的にはできません。退去時には「原状回復義務」があり、入居時の状態にしなければいけません。<br>例えば、エアコンをつける時に壁に穴をあけるなどの工事も、必ず許可がいります。<br>まずは管理会社に相談してください。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.07</span>
+                    <h2 class="faq-question-title">入居審査とはどういったものですか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>契約前に大家さん、不動産（管理）会社、審査会社が契約者に対しての内容を、入居条件にあてはめて審査をします。<br>審査結果によっては、連帯保証人の設定を求められる場合があり、入居審査には、数日から1週間ほどかかります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.08</span>
+                    <h2 class="faq-question-title">連帯保証人は誰でもいいのでしょうか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>原則は親族でかつ、30〜60歳前後の一定の年収がある方になります。<br>また、最近は連帯保証人ではなく、家賃保証会社の加入を求められることが多いです。<br>そのため、オーナーや不動産会社の入居審査に加えて家賃保証会社が加入審査を行う場合もあり、家賃保証会社から連絡が入ることがあります。<br>家賃保証会社の審査が完了しないと、入居が遅くなってしまうので、家賃保証会社からの審査連絡の電話は必ず取るようにしましょう。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.09</span>
+                    <h2 class="faq-question-title">契約時に必要なものは何ですか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>身分証明書（免許証や保険証）、住民票、収入証明書（源泉徴収票など）のほか、実印と印鑑証明書が必要になるケースが多いです。<br>保証会社を利用する場合は連帯保証人の書類が省略できることもあります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.10</span>
+                    <h2 class="faq-question-title">退去したい時はいつまでに伝えればいいですか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>契約内容によって異なりますが、退去希望日の「1ヶ月前」または「2ヶ月前」に設定されていることが一般的です。<br>期限を過ぎると余分な家賃を支払うことになります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.11</span>
+                    <h2 class="faq-question-title">賃貸借契約の締結に当たって、保険への加入義務はありますか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>契約条件として保険への加入が義務づけられている場合、原則としてこれを受け入れることを前提に契約を締結することになります。<br>多くの場合、加入が義務づけられているのは、住宅総合保険であり、貸主の所有物である建物のほか、借主の所有物である家財に対しても補償されることが多いと考えられます。<br>また、火災や水害の場合の補償だけでなく、借主が自らの瑕疵で水漏れ事故をおこしてしまった場合の補償や、その事故によって隣人や貸主に損害を与えた場合の損害賠償補償等が含まれることも多いです。<br>保険の内容を良く理解し、加入すると良いと考えられます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.12</span>
+                    <h2 class="faq-question-title">電気、水道、ガスはすぐ使えますか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>実家では当たり前のように使えていた電気や水道、ガスも、一人暮らしでは自分で準備しないと使えません。<br>引越しの日がわかったら、それぞれ供給会社に申し込みをしよう。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="q-label">Q.13</span>
+                    <h2 class="faq-question-title">住所が変わった。やるべきことはありますか？</h2>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-text">
+                        <div class="a-label-box"><span class="a-label">ANSWER</span></div>
+                        <p>まずは住民票の移動と郵便の手続きをしましょう。選挙の投票や運転免許の試験は住民票がある行政区で行うことになるので、特に実家から遠くへ引越す人は気をつけましょう。<br>郵便物は、転居届を郵便局に出し転送手続きをしておくと、前の住所宛に届いたものも、新しい住所にちゃんと届きます。<br>あとは、自分名義の口座や定期購読している雑誌など、登録内容を変更しておくとよいでしょう。</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="closing-banner">
+        <a href="https://lin.ee/Qsj3s42" class="footer-banner" target="_blank" rel="noopener">
+            <img src="images/LINE.png" alt="LINEでのお問い合わせはこちら">
+        </a>
+        <div class="footer-info">
+            Ⓒ2026 noahlivehome Co., Ltd.
+        </div>
+    </footer>
+
+</body>
+</html>
