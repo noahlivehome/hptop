@@ -1,102 +1,132 @@
-// 1. GitHub上で分割管理するファイルの一覧
-const dataFiles = [
-    'yougo-a.html',  // あ行
-    'yougo-ka.html', // か行
-    'yougo-sa.html', // さ行
-    'yougo-ta.html', // た行
-    'yougo-na.html', // な行
-    'yougo-ha.html', // は行
-    'yougo-ma.html', // ま行
-    'yougo-ya.html', // や行
-    'yougo-ra.html', // ら行
-    'yougo-wa.html', // わ行
-    'yougo-num.html' // 英数
-];
-
-let allTerms = []; // すべての用語データを格納する配列
-let currentRow = 'すべて'; // 現在選択されている50音フィルター（初期値）
-
-// 2. ページ開いた瞬間にすべての行のHTMLファイルを裏でロードする
-async function loadAllData() {
-    for (const file of dataFiles) {
-        try {
-            const response = await fetch(file);
-            if (!response.ok) continue;
-            const text = await response.text();
-            
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            
-            // 各ファイルから用語の塊を引っ張る
-            const items = doc.querySelectorAll('.term-data');
-            items.forEach(item => {
-                allTerms.push({
-                    title: item.dataset.title,
-                    yomi: item.dataset.yomi,
-                    row: item.dataset.row, // ★「あ」「か」などの行の識別用
-                    desc: item.innerHTML.trim() // 説明文（HTMLタグも含めて保持）
-                });
-            });
-        } catch (e) {
-            console.error("読み込みエラー:", file);
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不動産用語集（即戦力版）</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f4f6f8;
         }
-    }
-    // データが溜まったら、初期表示として「すべて」を表示
-    renderTerms();
-}
-
-// 3. 画面に用語を描画する処理（検索とフィルターを同時にかける）
-function renderTerms() {
-    const query = document.getElementById('search-input').value.toLowerCase().trim();
-    const resultsContainer = document.getElementById('results'); // 表示先のエリア
-    resultsContainer.innerHTML = ''; 
-
-    // 検索文字 と 50音ボタン の両方で絞り込み
-    const filtered = allTerms.filter(item => {
-        const matchesSearch = item.title.toLowerCase().includes(query) || 
-                              item.yomi.includes(query) || 
-                              item.desc.toLowerCase().includes(query);
+        header {
+            background-color: #1e3d59;
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
         
-        const matchesRow = (currentRow === 'すべて') || (item.row === currentRow);
-        
-        return matchesSearch && matchesRow;
-    });
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
 
-    // 該当件数の表示を更新（画像右側にある「該当件数: ○件」のパーツ）
-    document.getElementById('match-count').innerText = `${filtered.length}件`;
+        .search-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-input:focus { border-color: #1e3d59; }
 
-    // 画面に出力（現在の素敵なデザインのHTML構造に合わせて出力してください）
-    filtered.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'term-card'; // お使いのカードのクラス名
-        div.innerHTML = `
-            <h3 class="term-title">${item.title}</h3>
-            <div class="term-yomi">${item.yomi}</div>
-            <div class="term-desc">${item.desc}</div>
-        `;
-        resultsContainer.appendChild(div);
-    });
-}
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: #eee;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #ff6e40;
+            color: #fff;
+        }
 
-// 4. 50音ボタンが押されたときのイベント処理（例）
-// ※実際のボタンのHTMLに合わせて調整してください
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        currentRow = e.target.textContent; // 「あ」「か」などを取得
-        
-        // アクティブなボタンの色を変える処理（現在のスタイルを適用）
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        
-        renderTerms(); // 再描画
-    });
-});
+        .glossary-group {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        .group-title {
+            font-size: 1.6rem;
+            color: #1e3d59;
+            border-bottom: 3px solid #1e3d59;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        .term-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .term-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .term-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #ff6e40;
+            margin-bottom: 5px;
+        }
+        .term-kana {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        .term-desc { color: #444; }
 
-// 入力があったら検索を実行
-document.getElementById('search-input').addEventListener('input', renderTerms);
-// 読み込み開始
-window.addEventListener('DOMContentLoaded', loadAllData);
-</script>
+        .result-count {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
 
-</body>
-</html>
+<header>
+    <h1>不動産用語集</h1>
+    <p>キーワード検索・50音フィルター機能付き</p>
+</header>
+
+<div class="container">
+    <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="キーワードや読み仮名で検索（例：仲介、ばいかい、RC）...">
+        <div class="filter-buttons" id="filterButtons">
+            <button class="filter-btn active" data-kana="all">すべて</button>
+            <button class="filter-btn" data-kana="あ">あ</button>
+            <button class="filter-btn" data-kana="か">か</button>
+            <button class="filter-btn" data-kana="さ">さ</button>
+            <button class="filter-btn" data-kana="た">た</button>
+            <button class="filter-btn" data-kana="な">な</button>
+            <button class="filter-btn" data-kana="は">は</button>
+            <button class="filter-btn" data-kana="ま">ま</button>
+            <button class="filter-btn" data-kana="や">や</button>
+            <button class="filter-btn" data-kana="ら">ら</button>
+            <button class="filter-btn" data-kana="わ">わ</button>
+            <button class="filter-btn" data-kana="英数">英数</button>
