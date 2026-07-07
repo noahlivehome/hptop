@@ -1,341 +1,98 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不動産用語集（検索機能付き）</title>
-    <style>
-        /* -------------------------------------------
-           ベーススタイル
-        ------------------------------------------- */
-        body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            line-height: 1.7;
-            color: #333333;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
+// 1. GitHub上で分割管理するファイルの一覧
+const dataFiles = [
+    'yougo-a.html',  // あ行
+    'yougo-ka.html', // か行
+    'yougo-sa.html', // さ行
+    'yougo-ta.html', // た行
+    'yougo-na.html', // な行
+    'yougo-ha.html', // は行
+    'yougo-ma.html', // ま行
+    'yougo-ya.html', // や行
+    'yougo-ra.html', // ら行
+    'yougo-wa.html', // わ行
+    'yougo-num.html' // 英数
+];
+
+let allTerms = []; // すべての用語データを格納する配列
+let currentRow = 'すべて'; // 現在選択されている50音フィルター（初期値）
+
+// 2. ページ開いた瞬間にすべての行のHTMLファイルを裏でロードする
+async function loadAllData() {
+    for (const file of dataFiles) {
+        try {
+            const response = await fetch(file);
+            if (!response.ok) continue;
+            const text = await response.text();
+            
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            
+            // 各ファイルから用語の塊を引っ張る
+            const items = doc.querySelectorAll('.term-data');
+            items.forEach(item => {
+                allTerms.push({
+                    title: item.dataset.title,
+                    yomi: item.dataset.yomi,
+                    row: item.dataset.row, // ★「あ」「か」などの行の識別用
+                    desc: item.innerHTML.trim() // 説明文（HTMLタグも含めて保持）
+                });
+            });
+        } catch (e) {
+            console.error("読み込みエラー:", file);
         }
+    }
+    // データが溜まったら、初期表示として「すべて」を表示
+    renderTerms();
+}
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+// 3. 画面に用語を描画する処理（検索とフィルターを同時にかける）
+function renderTerms() {
+    const query = document.getElementById('search-input').value.toLowerCase().trim();
+    const resultsContainer = document.getElementById('results'); // 表示先のエリア
+    resultsContainer.innerHTML = ''; 
 
-        h1 {
-            text-align: center;
-            color: #1a365d; /* 落ち着いたネイビー */
-            font-size: 2rem;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background-color: #dd6b20; /* アクセントのオレンジ */
-            border-radius: 2px;
-        }
-
-        /* -------------------------------------------
-           検索エリア（追加機能）
-        ------------------------------------------- */
-        .search-container {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
-
-        .search-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 1rem;
-            border: 2px solid #cbd5e1;
-            border-radius: 6px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .search-input:focus {
-            border-color: #1a365d;
-        }
-
-        /* 検索結果が見つからないときのメッセージ */
-        .no-result {
-            display: none;
-            text-align: center;
-            padding: 30px;
-            color: #718096;
-            background: #ffffff;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        /* -------------------------------------------
-           インデックス（五十音ナビ）
-        ------------------------------------------- */
-        .index-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-            list-style: none;
-        }
-
-        .index-nav li {
-            margin: 5px;
-        }
-
-        .index-nav a {
-            display: block;
-            padding: 8px 16px;
-            background-color: #f1f5f9;
-            color: #4a5568;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-
-        .index-nav a:hover {
-            background-color: #1a365d;
-            color: #ffffff;
-        }
-
-        /* -------------------------------------------
-           用語集コンテンツエリア
-        ------------------------------------------- */
-        .glossary-section {
-            margin-bottom: 40px;
-        }
-
-        /* 行頭の「あ」「か」などの見出し */
-        .section-title {
-            font-size: 1.5rem;
-            color: #ffffff;
-            background: #1a365d;
-            padding: 8px 20px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        /* 用語リスト（dl, dt, dd） */
-        .glossary-list {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            padding: 10px 25px;
-            margin: 0 0 30px 0;
-        }
-
-        .glossary-item {
-            padding: 20px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .glossary-item:last-child {
-            border-bottom: none;
-        }
-
-        /* 用語名 */
-        .glossary-term {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #2d3748;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-
-        .glossary-term::before {
-            content: "";
-            display: inline-block;
-            width: 4px;
-            height: 18px;
-            background-color: #dd6b20;
-            margin-right: 10px;
-            border-radius: 2px;
-        }
-
-        /* 用語の説明 */
-        .glossary-description {
-            margin: 0;
-            color: #4a5568;
-            font-size: 0.95rem;
-            padding-left: 14px;
-        }
-
-        /* -------------------------------------------
-           レスポンシブ対応（スマホ）
-        ------------------------------------------- */
-        @media (max-width: 600px) {
-            .container {
-                margin: 20px auto;
-            }
-            .index-nav a {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-            }
-            .glossary-list {
-                padding: 5px 15px;
-            }
-            .glossary-term {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-
-    <h1>不動産用語集</h1>
-
-    <div class="search-container">
-        <div class="search-box">
-            <input type="text" id="searchInput" class="search-input" placeholder="キーワードを入力して用語を検索（例：RC、媒介）">
-        </div>
-    </div>
-
-    <ul class="index-nav" id="indexNav">
-        <li><a href="#line-a">あ行</a></li>
-        <li><a href="#line-ka">か行</a></li>
-        <li><a href="#line-sa">さ行</a></li>
-        <li><a href="#line-ta">た行</a></li>
-        <li><a href="#line-na">な行</a></li>
-        <li><a href="#line-ha">は行</a></li>
-        <li><a href="#line-ma">ま行</a></li>
-        <li><a href="#line-ya">や行</a></li>
-        <li><a href="#line-ra">ら行</a></li>
-        <li><a href="#line-wa">わ行</a></li>
-    </ul>
-
-    <div id="noResult" class="no-result">該当する用語が見つかりませんでした。</div>
-
-    <section id="line-a" class="glossary-section">
-        <h2 class="section-title">あ行</h2>
-        <dl class="glossary-list">
-            <div class="glossary-item">
-                <dt class="glossary-term">RC造（鉄筋コンクリート造）</dt>
-                <dd class="glossary-description">
-                    Reinforced Concreteの略。鉄筋とコンクリートを組み合わせた建築構造。耐火性、耐久性、遮音性に優れており、中高層のマンションなどに多く採用されています。
-                </dd>
-            </div>
-            <div class="glossary-item">
-                <dt class="glossary-term">一般媒介契約</dt>
-                <dd class="glossary-description">
-                    不動産の売却や賃貸を不動産会社に依頼する契約の一つ。同時に複数の不動産会社に重ねて依頼することができ、自分で見つけた相手と直接契約（自己発見取引）することも可能です。
-                </dd>
-            </div>
-        </dl>
-    </section>
-
-    <section id="line-ka" class="glossary-section">
-        <h2 class="section-title">か行</h2>
-        <dl class="glossary-list">
-            <div class="glossary-item">
-                <dt class="glossary-term">管理費</dt>
-                <dd class="glossary-description">
-                    マンションなどの共同住宅において、エレベーターの保守点検、共用灯の電気代、清掃費用など、共用部分の維持管理のために毎月支払う費用のこと。
-                </dd>
-            </div>
-            <div class="glossary-item">
-                <dt class="glossary-term">建ぺい率</dt>
-                <dd class="glossary-description">
-                    敷地面積に対する「建築面積（建物を真上から見たときの面積）」の割合のこと。都市計画によって上限が定められており、敷地いっぱいに建物を建てることはできません。
-                </dd>
-            </div>
-        </dl>
-    </section>
-
-    <section id="line-sa" class="glossary-section">
-        <h2 class="section-title">さ行</h2>
-        <dl class="glossary-list">
-            <div class="glossary-item">
-                <dt class="glossary-term">新築</dt>
-                <dd class="glossary-description">
-                    建築後1年未満であって、かつこれまでに一度も人が居住したことがない住宅のこと。「住宅の品質確保の促進等に関する法律」によって定義されています。
-                </dd>
-            </div>
-        </dl>
-    </section>
-
-</div>
-
-<script>
-    document.getElementById('searchInput').addEventListener('input', function() {
-        const keyword = this.value.toLowerCase().trim();
-        const items = document.querySelectorAll('.glossary-item');
-        const sections = document.querySelectorAll('.glossary-section');
-        const indexNav = document.getElementById('indexNav');
-        const noResult = document.getElementById('noResult');
+    // 検索文字 と 50音ボタン の両方で絞り込み
+    const filtered = allTerms.filter(item => {
+        const matchesSearch = item.title.toLowerCase().includes(query) || 
+                              item.yomi.includes(query) || 
+                              item.desc.toLowerCase().includes(query);
         
-        let hasVisibleItemGlobal = false;
-
-        // 1. 各用語の絞り込み
-        items.forEach(item => {
-            const term = item.querySelector('.glossary-term').textContent.toLowerCase();
-            const desc = item.querySelector('.glossary-description').textContent.toLowerCase();
-            
-            // 用語名か説明文にキーワードが含まれているか判定
-            if (term.includes(keyword) || desc.includes(keyword)) {
-                item.style.display = 'block';
-                hasVisibleItemGlobal = true;
-            } else {
-                item.style.display = 'none';
-            }
-        });
-
-        // 2. 中身が空になった「〇行」セクションを非表示にする
-        sections.forEach(section => {
-            const visibleItems = section.querySelectorAll('.glossary-item[style="display: block;"]');
-            const totalItems = section.querySelectorAll('.glossary-item');
-            
-            // 検索中かつ、そのセクション内に表示すべきアイテムがない場合
-            if (keyword !== '' && visibleItems.length === 0) {
-                section.style.display = 'none';
-            } else {
-                section.style.display = 'block';
-            }
-        });
-
-        // 3. 検索中は五十音ナビを隠し、ヒットなしの時はメッセージを出す
-        if (keyword !== '') {
-            indexNav.style.display = 'none'; // 検索中は五十音ナビを非表示に
-            if (!hasVisibleItemGlobal) {
-                noResult.style.display = 'block';
-            } else {
-                noResult.style.display = 'none';
-            }
-        } else {
-            // 検索窓が空の時はすべて元に戻す
-            indexNav.style.display = 'flex';
-            noResult.style.display = 'none';
-            sections.forEach(section => section.style.display = 'block');
-            items.forEach(item => item.style.display = 'block');
-        }
+        const matchesRow = (currentRow === 'すべて') || (item.row === currentRow);
+        
+        return matchesSearch && matchesRow;
     });
-</script>
 
-</body>
-</html>
+    // 該当件数の表示を更新（画像右側にある「該当件数: ○件」のパーツ）
+    document.getElementById('match-count').innerText = `${filtered.length}件`;
+
+    // 画面に出力（現在の素敵なデザインのHTML構造に合わせて出力してください）
+    filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'term-card'; // お使いのカードのクラス名
+        div.innerHTML = `
+            <h3 class="term-title">${item.title}</h3>
+            <div class="term-yomi">${item.yomi}</div>
+            <div class="term-desc">${item.desc}</div>
+        `;
+        resultsContainer.appendChild(div);
+    });
+}
+
+// 4. 50音ボタンが押されたときのイベント処理（例）
+// ※実際のボタンのHTMLに合わせて調整してください
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        currentRow = e.target.textContent; // 「あ」「か」などを取得
+        
+        // アクティブなボタンの色を変える処理（現在のスタイルを適用）
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        renderTerms(); // 再描画
+    });
+});
+
+// 入力があったら検索を実行
+document.getElementById('search-input').addEventListener('input', renderTerms);
+// 読み込み開始
+window.addEventListener('DOMContentLoaded', loadAllData);
