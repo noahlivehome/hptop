@@ -130,3 +130,127 @@
             <button class="filter-btn" data-kana="ら">ら</button>
             <button class="filter-btn" data-kana="わ">わ</button>
             <button class="filter-btn" data-kana="英数">英数</button>
+        </div>
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+    <div id="glossaryContainer"></div>
+</div>
+
+<script>
+    // 1. GitHub上で分割管理するファイルの一覧
+    const dataFiles = [
+        'yougo-a.html',  // あ行
+        'yougo-ka.html', // か行
+        'yougo-sa.html', // さ行
+        'yougo-ta.html', // た行
+        'yougo-na.html', // な行
+        'yougo-ha.html', // は行
+        'yougo-ma.html', // ま行
+        'yougo-ya.html', // や行
+        'yougo-ra.html', // ら行
+        'yougo-wa.html', // わ行
+        'yougo-num.html' // 英数
+    ];
+
+    let allTerms = []; 
+    let currentFilter = 'all'; 
+
+    // 2. 外部HTMLファイルを裏でロードする処理
+    async function loadAllData() {
+        const resultCountEl = document.getElementById('resultCount');
+        if (resultCountEl) resultCountEl.innerText = "データを読み込み中...";
+
+        for (const file of dataFiles) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) continue; 
+                const text = await response.text();
+                
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                const items = doc.querySelectorAll('.term-data');
+                items.forEach(item => {
+                    allTerms.push({
+                        title: item.dataset.title || '',
+                        yomi: item.dataset.yomi || '',
+                        row: item.dataset.row || '', 
+                        desc: item.innerHTML.trim() 
+                    });
+                });
+            } catch (e) {
+                console.error("読み込みエラー:", file, e);
+            }
+        }
+        renderTerms();
+    }
+
+    // 3. 画面に用語を描画・検索・絞り込む処理
+    function renderTerms() {
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        const container = document.getElementById('glossaryContainer');
+        if (!container) return;
+        container.innerHTML = ''; 
+
+        const filtered = allTerms.filter(item => {
+            const matchesSearch = item.title.toLowerCase().includes(query) || 
+                                  item.yomi.includes(query) || 
+                                  item.desc.toLowerCase().includes(query);
+            
+            const matchesFilter = (currentFilter === 'all') || (item.row === currentFilter);
+            
+            return matchesSearch && matchesFilter;
+        });
+
+        const resultCountEl = document.getElementById('resultCount');
+        if (resultCountEl) {
+            resultCountEl.innerText = `該当件数: ${filtered.length}件`;
+        }
+
+        if (filtered.length === 0) {
+            container.innerHTML = '<div class="glossary-group"><p>該当する用語が見つかりませんでした。</p></div>';
+            return;
+        }
+
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'glossary-group';
+        
+        const displayTitle = currentFilter === 'all' ? '検索結果・全用語' : `${currentFilter}行`;
+        let htmlContent = `<h2 class="group-title">${displayTitle}</h2>`;
+
+        filtered.forEach(item => {
+            htmlContent += `
+                <div class="term-item">
+                    <div class="term-title">${item.title}</div>
+                    <div class="term-kana">${item.yomi}</div>
+                    <div class="term-desc">${item.desc}</div>
+                </div>
+            `;
+        });
+
+        groupDiv.innerHTML = htmlContent;
+        container.appendChild(groupDiv);
+    }
+
+    // 4. 50音ボタンのクリックイベント
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            currentFilter = e.target.getAttribute('data-kana');
+            renderTerms();
+        });
+    });
+
+    // 5. リアルタイム検索
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', renderTerms);
+    }
+
+    window.addEventListener('DOMContentLoaded', loadAllData);
+</script>
+</body>
+</html>
