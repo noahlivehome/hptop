@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不動産用語集（即戦力版）</title>
+    <title>不動産用語集（テスト版）</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -138,7 +138,7 @@
 </div>
 
 <script>
-    // 1. GitHub上で分割管理するファイルの一覧
+    // 1. 読み込む分割ファイルの一覧
     const dataFiles = [
         'yougo-a.html',  // あ行
         'yougo-ka.html', // か行
@@ -156,7 +156,7 @@
     let allTerms = []; 
     let currentFilter = 'all'; 
 
-    // 2. 外部HTMLファイルを裏でロードする処理
+    // 2. 分割されたHTMLファイルを裏でロードする
     async function loadAllData() {
         const resultCountEl = document.getElementById('resultCount');
         if (resultCountEl) resultCountEl.innerText = "データを読み込み中...";
@@ -164,7 +164,7 @@
         for (const file of dataFiles) {
             try {
                 const response = await fetch(file);
-                if (!response.ok) continue; 
+                if (!response.ok) continue; // ファイルがまだ存在しなくてもスキップして次へ
                 const text = await response.text();
                 
                 const parser = new DOMParser();
@@ -186,7 +186,7 @@
         renderTerms();
     }
 
-    // 3. 画面に用語を描画・検索・絞り込む処理
+    // 3. 画面にマージして描画する処理
     function renderTerms() {
         const query = document.getElementById('searchInput').value.toLowerCase().trim();
         const container = document.getElementById('glossaryContainer');
@@ -233,7 +233,7 @@
         container.appendChild(groupDiv);
     }
 
-    // 4. 50音ボタンのクリックイベント
+    // 4. ボタンのクリックイベント
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -244,7 +244,7 @@
         });
     });
 
-    // 5. リアルタイム検索
+    // 5. キーワード検索のリアルタイム連動
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('input', renderTerms);
