@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不動産用語集</title>
+    <style>
+        /* 全体のリセットと基本スタイル */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #ffffff; /* 背景色：白 */
+            color: #333333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* セクション共通スタイル */
+        .search-section {
+            margin-bottom: 45px;
+        }
+
+        /* 見出し（タイトル）の色：#5F9EA0 */
+        .section-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5F9EA0; 
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        /* 1. キーワードから探す */
+        .search-box-form {
+            display: flex;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 15px;
+            font-size: 16px;
+            border: 1px solid #2F4F4F; /* 枠線：#2F4F4F */
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        .search-button {
+            background-color: #2F4F4F; /* ボタン背景：#2F4F4F */
+            color: #ffffff;
+            border: 1px solid #2F4F4F; 
+            border-left: none;
+            margin-left: -1px; 
+            padding: 0 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-button:hover {
+            background-color: #1a3333;
+            border-color: #1a3333;
+        }
+
+        /* 2. あ行用のグリッド（「全ての用語」＋「あ〜お」で計6カラム） */
+        .gojuon-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            max-width: 750px;
+        }
+
+        /* 3. アルファベット順から探す */
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr) 2fr;
+            gap: 12px;
+            max-width: 850px;
+        }
+
+        /* 共通ボタン装飾（背景：白、枠線：#2F4F4F） */
+        .nav-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 1px solid #2F4F4F;
+            border-radius: 4px;
+            color: #2F4F4F;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 14px 5px;
+            box-sizing: border-box;
+            transition: all 0.2s;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* マウスを乗せたときの効果 */
+        .nav-button:hover {
+            background-color: #f0f4f4;
+            border-color: #4f7474;
+            color: #4f7474;
+        }
+
+        /* スマホ表示での崩れ防止対応 */
+        @media (max-width: 768px) {
+            .gojuon-grid {
+                grid-template-columns: repeat(3, 1fr); /* スマホ時は3列×2行に折り返し */
+            }
+            .alphabet-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .alphabet-grid .nav-button:last-child {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="search-section">
+        <label class="section-label">キーワードから探す</label>
+        <form action="search_result.html" method="get" class="search-box-form">
+            <input type="text" name="keyword" class="search-input">
+            <button type="submit" class="search-button">検索する</button>
+        </form>
+    </div>
+
+    <div class="search-section">
+        <div class="section-label">五十音順から探す</div>
+        <div class="gojuon-grid">
+            <a href="all.html" class="nav-button">全ての用語</a>
+            <a href="kana_a.html" class="nav-button">あ</a>
+            <a href="kana_i.html" class="nav-button">い</a>
+            <a href="kana_u.html" class="nav-button">う</a>
+            <a href="kana_e.html" class="nav-button">え</a>
+            <a href="kana_o.html" class="nav-button">お</a>
+        </div>
+    </div>
+
+    <div class="search-section">
+        <div class="section-label">アルファベット順から探す</div>
+        <div class="alphabet-grid">
+            <a href="alpha_ag.html" class="nav-button">A～G</a>
+            <a href="alpha_hn.html" class="nav-button">H～N</a>
+            <a href="alpha_ou.html" class="nav-button">O～U</a>
+            <a href="alpha_vz.html" class="nav-button">V～Z</a>
+            <a href="num_symbol.html" class="nav-button">数字・記号</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
